@@ -1,7 +1,0 @@
-commonLabels:
-  app: users
-
-resources:
-- deployment.yaml
-- service.yaml
-
