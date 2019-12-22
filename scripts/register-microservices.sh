@@ -22,3 +22,7 @@ curl -i -X POST --url http://localhost:8001/services/jaeger/routes --data 'hosts
 sudo echo "127.0.0.1 api.local" >> /etc/hosts
 curl -i -X POST --url http://localhost:8001/services/ --data 'name=api' --data 'url=http://localhost:8001'
 curl -i -X POST --url http://localhost:8001/services/api/routes --data 'hosts[]=api.local'
+
+sudo echo "127.0.0.1 argocd.local" >> /etc/hosts
+curl -i -X POST --url http://localhost:8001/services/ --data 'name=argocd' --data 'url=https://argocd-server.argocd'
+curl -i -X POST --url http://localhost:8001/services/argocd/routes --data 'hosts[]=argocd.local'
