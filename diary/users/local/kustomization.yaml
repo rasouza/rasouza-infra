@@ -8,4 +8,4 @@ resources:
 
 images:
 - name: rasouza/diary-users
-  newTag: latest
+  newTag: 0.4.0
