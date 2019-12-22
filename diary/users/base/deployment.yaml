@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: users
+    version: v1
+  name: users
+  namespace: diary
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+        version: v1
+    spec:
+      containers:
+      - image: rasouza/diary-api-users:latest
+        name: users
+        ports:
+        - containerPort: 8000
+      restartPolicy: Always

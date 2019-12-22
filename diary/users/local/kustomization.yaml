@@ -1,0 +1,7 @@
+namePrefix: local-
+
+commonLabels:
+  environment: local
+
+bases:
+- ../base
