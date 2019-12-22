@@ -24,6 +24,6 @@ kubectl apply -f diary-infra/base
 
 Adds services to **Kong API Gateway**
 ```
-./base/microservices.sh
+./scripts/register-microservices.sh
 ```
 
