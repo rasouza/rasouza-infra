@@ -1,7 +1,13 @@
-namePrefix: local-
+# namePrefix: local-
 
 commonLabels:
   environment: local
 
-bases:
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
 - ../base
+
+images:
+- name: rasouza/diary-users
+  newTag: latest

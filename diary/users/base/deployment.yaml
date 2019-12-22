@@ -18,7 +18,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: rasouza/diary-api-users:latest
+      - image: rasouza/diary-users:latest
         name: users
         ports:
         - containerPort: 8000
