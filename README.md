@@ -1,4 +1,5 @@
 # Diary Infrastructure
+[![Build status](https://badge.buildkite.com/95c23aa7e478c2a528674bb1c9fa0122dd128b296906478e25.svg)](https://buildkite.com/rasouza/diary-users)
 This repository holds all k8s YAML necessary to run [Diary](https://github.com/users/rasouza/projects/2) microservices
 
 ## Features
@@ -6,6 +7,7 @@ This repository holds all k8s YAML necessary to run [Diary](https://github.com/u
 - Kong Ingress Controller 0.6.2
 - Kong 1.3
 - Argo CD 1.3.6
+- EFK (Elasticsearch, Fluentd and Kibana)
 
 ## URLs
 - Grafana - [http://grafana.local](http://grafana.local)
@@ -14,6 +16,7 @@ This repository holds all k8s YAML necessary to run [Diary](https://github.com/u
 - Jaeger - [http://jaeger.local](http://jaeger.local)
 - Kong Admin - [http://api.local](http://api.local)
 - Argo CD - [https://argocd.local](https://argocd.local)
+- Logs - [https://logs.local](https://logs.local)
 
 ## API Reference
 
