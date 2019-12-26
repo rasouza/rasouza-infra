@@ -30,9 +30,7 @@ It requires a k8s cluster with `LoadBalancer` enabled. See [Getting Started](htt
 After you have a Kubernetes cluster ready:
 ```
 git clone git@github.com:rasouza/diary-infra.git
-kubectl apply -f diary-infra/base
-kubectl create ns argocd
-kubectl apply -n argocd -f diary-infra/argocd
+diary-infra/install.sh
 ```
 
 Adds services to **Kong API Gateway**
