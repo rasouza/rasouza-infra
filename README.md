@@ -15,6 +15,10 @@ This repository holds all k8s YAML necessary to run [Diary](https://github.com/u
 - Kong Admin - [http://api.local](http://api.local)
 - Argo CD - [https://argocd.local](https://argocd.local)
 
+## API Reference
+
+- [Kong Admin API](https://docs.konghq.com/0.13.x/)
+
 ## How to install
 It requires a k8s cluster with `LoadBalancer` enabled. See [Getting Started](https://kubernetes.io/docs/setup/) section on Kubernetes documentation for more info.
 
