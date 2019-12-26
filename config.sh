@@ -36,7 +36,7 @@ function installation_complete() {
   echo -e "\033[00;32mInstallation complete\033[00m"
 
   # If you want the install script to terminate automatically:
-  #exit 0
+  exit 0
 }
 
 function installation_incomplete() {
