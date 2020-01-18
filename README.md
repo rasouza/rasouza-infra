@@ -1,6 +1,6 @@
 # Diary Infrastructure
 [![Project Diary](https://img.shields.io/badge/project-diary-blue?style=flat-square&logo=git)](https://github.com/users/rasouza/projects/2)
-[![Build status](https://img.shields.io/buildkite/95c23aa7e478c2a528674bb1c9fa0122dd128b296906478e25?label=deploy&logo=kubernetes&logoColor=white&style=flat-square)](https://buildkite.com/rasouza/diary-users)
+[![Build status](https://img.shields.io/buildkite/95c23aa7e478c2a528674bb1c9fa0122dd128b296906478e25/master?label=deploy&logo=kubernetes&logoColor=white&style=flat-square)](https://buildkite.com/rasouza/diary-users)
 
 This repository holds all k8s YAML necessary to run [Diary](https://github.com/users/rasouza/projects/2) microservices
 
