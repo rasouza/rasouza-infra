@@ -8,12 +8,22 @@ spec:
     - argocd.local
   gateways:
     - argocd-gateway
+  tls:
+  - match:
+    - port: 443
+      sni_hosts:
+      - argocd.local
+    route:
+    - destination:
+        host: argocd-server
+        port:
+          number: 443
   http:
   - route:
     - destination:
         host: argocd-server
         port:
-          number: 443
+          number: 80
 ---
 
 apiVersion: networking.istio.io/v1alpha3
