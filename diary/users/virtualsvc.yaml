@@ -7,12 +7,9 @@ spec:
   hosts:
     - users.diary.local
   gateways:
-    - ingressgateway
+    - diary-gateway
   http:
-  - match:
-    - uri:
-        prefix: /
-    route:
+  - route:
     - destination:
         host: users
         port:

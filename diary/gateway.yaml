@@ -1,13 +1,11 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: ingressgateway
+  name: diary-gateway
   namespace: diary
   labels:
     release: istio
 spec:
-  selector:
-    istio: ingressgateway
   servers:
   - port:
       number: 80

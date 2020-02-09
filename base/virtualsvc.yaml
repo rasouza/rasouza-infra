@@ -9,10 +9,7 @@ spec:
   gateways:
     - ingressgateway
   http:
-  - match:
-    - uri:
-        prefix: /
-    route:
+  - route:
     - destination:
         host: grafana
         port:
@@ -30,10 +27,7 @@ spec:
   gateways:
     - ingressgateway
   http:
-  - match:
-    - uri:
-        prefix: /
-    route:
+  - route:
     - destination:
         host: kiali
         port:
@@ -51,10 +45,7 @@ spec:
   gateways:
     - ingressgateway
   http:
-  - match:
-    - uri:
-        prefix: /
-    route:
+  - route:
     - destination:
         host: prometheus
         port:
@@ -72,10 +63,7 @@ spec:
   gateways:
     - ingressgateway
   http:
-  - match:
-    - uri:
-        prefix: /
-    route:
+  - route:
     - destination:
         host: tracing
         port:

@@ -20552,14 +20552,6 @@ spec:
       protocol: HTTP
     hosts:
       - "*"
-  - port:
-      number: 443
-      name: https
-      protocol: HTTPS
-    tls:
-      mode: PASSTHROUGH
-    hosts:
-      - "*"
     # Additional ports in gateaway for the ingressPorts - apps using dedicated port instead of hostname
 ---
 
