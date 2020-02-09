@@ -77,7 +77,7 @@ spec:
         prefix: /
     route:
     - destination:
-        host: jaeger
+        host: tracing
         port:
           number: 80
 ---

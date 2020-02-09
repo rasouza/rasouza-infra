@@ -16,5 +16,5 @@ spec:
     - destination:
         host: argocd-server
         port:
-          number: 80
+          number: 443
 ---
