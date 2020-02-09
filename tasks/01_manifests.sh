@@ -8,5 +8,5 @@ function manifests_run() {
 
     log_info "Applying Argo CD manifests"
     kubectl create ns argocd
-    kubectl apply -n argocd -f /argocd
+    kubectl apply -n argocd -f ./argocd
 }
