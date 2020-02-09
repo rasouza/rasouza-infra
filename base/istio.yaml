@@ -1,3 +1,4 @@
+# Generated with `istioctl manifest apply --set profile=demo`
 # Resources for Base component
 
 apiVersion: rbac.authorization.k8s.io/v1
