@@ -4,7 +4,7 @@ metadata:
   labels:
     app: users
     service: users
-  name: users
+  name: users-svc
   namespace: diary
 spec:
   ports:
