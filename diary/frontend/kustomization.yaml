@@ -1,0 +1,12 @@
+commonLabels:
+  app: frontend
+
+resources:
+- deployment.yaml
+- service.yaml
+- virtualsvc.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+images:
+- name: rasouza/diary-frontend
+  newTag: 9194b14

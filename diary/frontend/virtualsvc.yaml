@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: frontend-virtual-svc
+  namespace: diary
+spec:
+  hosts:
+    - frontend.diary.local
+    - web.diary.local
+  gateways:
+    - diary-gateway
+  http:
+  - route:
+    - destination:
+        host: frontend-svc
+        port:
+          number: 8000
+---
