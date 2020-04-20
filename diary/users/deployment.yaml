@@ -4,7 +4,7 @@ metadata:
   labels:
     app: users
     version: v1
-  name: users
+  name: users-deployment
   namespace: diary
 spec:
   replicas: 2
@@ -18,7 +18,7 @@ spec:
         version: v1
     spec:
       containers:
-      - image: rasouza/diary-users:latest
+      - image: rasouza/diary-users
         name: users
         ports:
         - containerPort: 8000
