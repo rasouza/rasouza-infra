@@ -1,4 +1,4 @@
-# Generated with `istioctl manifest apply --set profile=demo`
+# Generated with `istioctl manifest generate --set values.global.disablePolicyChecks=false --set profile=demo`
 # Resources for Base component
 
 apiVersion: rbac.authorization.k8s.io/v1
@@ -22018,7 +22018,7 @@ data:
     reportBatchMaxTime: 1s
     disableMixerHttpReports: false
 
-    disablePolicyChecks: true
+    disablePolicyChecks: false
 
 
     # This is the k8s ingress service name, update if you used a different name
