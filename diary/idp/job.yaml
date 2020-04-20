@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name:  idp-migrate
+  namespace: diary
+spec:
+  ttlSecondsAfterFinished: 120
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: idp-migrate
+        image: oryd/hydra:v1.4.5
+        command: ["hydra", "migrate", "sql", "-e", "--yes"]
+        envFrom:
+        - configMapRef:
+            name: idp-config

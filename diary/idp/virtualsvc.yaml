@@ -1,0 +1,33 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: idp-virtual-svc
+  namespace: diary
+spec:
+  hosts:
+    - idp.diary.local
+  gateways:
+    - diary-gateway
+  http:
+  - route:
+    - destination:
+        host: idp-svc
+        port:
+          number: 4444
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: idp-admin-virtual-svc
+  namespace: diary
+spec:
+  hosts:
+    - idp-admin.diary.local
+  gateways:
+    - diary-gateway
+  http:
+  - route:
+    - destination:
+        host: idp-svc
+        port:
+          number: 4445

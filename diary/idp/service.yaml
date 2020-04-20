@@ -1,0 +1,18 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  idp-svc
+  namespace: diary
+  labels:
+    app: idp
+    service: idp
+spec:
+  selector:
+    app:  idp
+  ports:
+  - name:  public
+    port:  4444
+    targetPort:  4444
+  - name:  admin
+    port:  4445
+    targetPort:  4445

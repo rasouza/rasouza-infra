@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  namespace: diary
+  name:  idp-deployment
+  labels:
+    app:  idp
+    version: v1
+spec:
+  template:
+    metadata:
+      labels:
+        app:  idp
+        version: v1
+    spec:
+      containers:    
+      - image:  oryd/hydra:v1.4.5
+        name:  idp
+        command:
+        - hydra
+        - serve
+        - all
+        - --dangerous-force-http
+        livenessProbe:
+          httpGet:
+            path: /health/ready
+            port: 4444
+          initialDelaySeconds: 90
+          timeoutSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 4444
+          initialDelaySeconds: 30
+          timeoutSeconds: 10
+        envFrom:
+        - configMapRef:
+            name: idp-config
+        ports:
+        - containerPort:  4444
+          name:  public
+        - containerPort: 4445
+          name: admin
+      
