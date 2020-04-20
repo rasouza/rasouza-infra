@@ -14,5 +14,5 @@ spec:
     - destination:
         host: frontend-svc
         port:
-          number: 8000
+          number: 80
 ---
