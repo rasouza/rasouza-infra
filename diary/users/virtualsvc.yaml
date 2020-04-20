@@ -11,7 +11,7 @@ spec:
   http:
   - route:
     - destination:
-        host: users
+        host: users-svc
         port:
           number: 8000
 ---
