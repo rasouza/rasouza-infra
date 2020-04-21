@@ -19,3 +19,4 @@ data:
   DB_SCHEMA: users
   DB_USERNAME: diary_user
   GITHUB_CLIENT_ID: 29e23ecfc4eec0814fc0
+  IDP_CLIENT_ID: diary-users
