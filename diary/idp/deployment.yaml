@@ -33,9 +33,14 @@ spec:
             port: 4444
           initialDelaySeconds: 30
           timeoutSeconds: 10
+        env:
+        - name: DSN
+          value: "postgres://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_DATABASE):$(DB_PORT)?search_path=$(DB_SCHEMA)"
         envFrom:
         - configMapRef:
             name: idp-config
+        - secretRef:
+            name: idp-secret
         ports:
         - containerPort:  4444
           name:  public

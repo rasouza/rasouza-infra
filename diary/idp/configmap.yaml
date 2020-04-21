@@ -4,11 +4,13 @@ metadata:
   name: idp-config
   namespace: diary
 data:
-  DSN: postgres://postgres:IVtG0eBXYS@postgresql-ha-1587408021-pgpool.postgres.svc.cluster.local:5432/postgres
+  DB_HOST: db-postgresql.postgres
+  DB_PORT: 5432
+  DB_DATABASE: diary
+  DB_SCHEMA: idp
+  DB_USER: idp_user
   URLS_SELF_ISSUER: http://idp.diary.local
-  URLS_CONSENT: http://frontend.diary.local/auth/consent
+  URLS_CONSENT: http://users-svc/consent
   URLS_LOGIN: http://frontend.diary.local/auth/login
   URLS_LOGOUT: http://frontend.diary.local/auth/logout
-  SECRET_SYSTEM: youReallyNeedToChangeThis
   OIDC_SUBJECT_IDENTIFIERS_SUPPORTED_TYPES: public,pairwise
-  OIDC_SUBJECT_IDENTIFIERS_PAIRWISE_SALT: youReallyNeedToChangeThis
