@@ -5,7 +5,7 @@ metadata:
   namespace: diary
 data:
   DB_HOST: db-postgresql.postgres
-  DB_PORT: 5432
+  DB_PORT: "5432"
   DB_DATABASE: diary
   DB_SCHEMA: idp
   DB_USER: idp_user
