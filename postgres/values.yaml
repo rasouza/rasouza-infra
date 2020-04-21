@@ -489,7 +489,7 @@ metrics:
       prometheus.io/port: "9090"
     loadBalancerIP:
   serviceMonitor:
-    enabled: true
+    enabled: false
     additionalLabels: {}
     # namespace: monitoring
     # interval: 30s

@@ -6,8 +6,7 @@ commonLabels:
 resources:
 - namespace.yaml
 - secret.yaml
-- metrics-svc.yaml
-- svc-headless.yaml
-- svc.yaml
-- statefulset.yaml
-- servicemonitor.yaml
+- templates/metrics-svc.yaml
+- templates/svc-headless.yaml
+- templates/svc.yaml
+- templates/statefulset.yaml
