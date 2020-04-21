@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name:  users-migrate
+  namespace: diary
+  labels:
+    app: users
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: users-migrate
+        image: rasouza/diary-users
+        command:
+          - php
+          - artisan
+          - migrate
+        envFrom:
+        - configMapRef:
+            name: users-config
+        - secretRef:
+            name: users-secret
