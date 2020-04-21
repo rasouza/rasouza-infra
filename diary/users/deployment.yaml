@@ -17,10 +17,15 @@ spec:
         app: users
         version: v1
     spec:
+      restartPolicy: Always
       containers:
       - image: rasouza/diary-users
         name: users
         ports:
-        - containerPort: 8000
-      restartPolicy: Always
+          - containerPort: 8000
+        envFrom:
+        - configMapRef:
+            name: users-config
+        - secretRef:
+            name: users-secret
   revisionHistoryLimit: 0
