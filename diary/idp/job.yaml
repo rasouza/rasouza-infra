@@ -4,7 +4,7 @@ metadata:
   name:  idp-migrate
   namespace: diary
 spec:
-  ttlSecondsAfterFinished: 100
+  # ttlSecondsAfterFinished: 100
   template:
     metadata:
       annotations:
