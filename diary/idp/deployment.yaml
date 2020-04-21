@@ -35,7 +35,7 @@ spec:
           timeoutSeconds: 10
         env:
         - name: DSN
-          value: "postgres://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST)/$(DB_DATABASE):$(DB_PORT)?search_path=$(DB_SCHEMA)"
+          value: "postgres://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)/$(DB_DATABASE)?search_path=$(DB_SCHEMA)"
         envFrom:
         - configMapRef:
             name: idp-config
