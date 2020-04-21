@@ -8,6 +8,8 @@ metadata:
 spec:
   template:
     metadata:
+      labels:
+        app: users
       annotations:
         sidecar.istio.io/inject: "false"
     spec:
@@ -15,12 +17,7 @@ spec:
       containers:
       - name: users-migrate
         image: rasouza/diary-users
-        command:
-          - php
-          - artisan
-          - migrate
-          - "--force"
-          - "--no-interaction"
+        command: ["php", "artisan", "migrate", "--force", "--no-interaction"]
         envFrom:
         - configMapRef:
             name: users-config
