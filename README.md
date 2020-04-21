@@ -8,6 +8,7 @@ This repository holds all k8s YAML necessary to run [Diary](https://github.com/u
 - Istio 1.4.3
 - Argo CD 1.4.2
 - EFK (Elasticsearch, Fluentd and Kibana)
+- [PostgreSQL 11.7](postgres/README.md)
 
 ## URLs
 - Grafana - [http://grafana.local](http://grafana.local)

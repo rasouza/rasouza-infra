@@ -11,5 +11,5 @@ In order to retrieve `values.yaml` you can run
 helm show values bitnami/postgresql
 ```
 
-### Management
-Refer to https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e
+### Database and User Management
+Refer to https://tableplus.com/blog/2018/04/postgresql-how-to-grant-access-to-users.html
