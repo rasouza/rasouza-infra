@@ -21,5 +21,12 @@ spec:
         name: frontend
         ports:
         - containerPort: 8000
+        volumeMounts:
+        - name: frontend-config
+          mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: frontend-config
+        configMap:
+          name: frontend-config
       restartPolicy: Always
   revisionHistoryLimit: 0
