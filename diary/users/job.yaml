@@ -19,6 +19,8 @@ spec:
           - php
           - artisan
           - migrate
+          - --force
+          - --no-interaction
         envFrom:
         - configMapRef:
             name: users-config
