@@ -10,7 +10,7 @@ data:
   DB_SCHEMA: idp
   DB_USER: idp_user
   URLS_SELF_ISSUER: http://idp.diary.local
-  URLS_CONSENT: http://users-svc/consent
+  URLS_CONSENT: http://users.diary.local/consent
   URLS_LOGIN: http://frontend.diary.local/auth/login
   URLS_LOGOUT: http://frontend.diary.local/auth/logout
   OIDC_SUBJECT_IDENTIFIERS_SUPPORTED_TYPES: public,pairwise
