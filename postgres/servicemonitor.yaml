@@ -1,0 +1,22 @@
+---
+# Source: postgresql/templates/servicemonitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: db-postgresql
+  labels:
+    app: postgresql
+    chart: postgresql-8.9.0
+    release: "db"
+    heritage: "Helm"
+
+spec:
+  endpoints:
+    - port: http-metrics
+  namespaceSelector:
+    matchNames:
+      - postgres
+  selector:
+    matchLabels:
+      app: postgresql
+      release: db
