@@ -5,8 +5,8 @@ metadata:
   namespace: diary
 spec:
   hosts:
-    - frontend.diary.local
-    - web.diary.local
+    - frontend.diary.localhost
+    - web.diary.localhost
   gateways:
     - diary-gateway
   http:

@@ -5,7 +5,7 @@ metadata:
   namespace: diary
 spec:
   hosts:
-    - idp.diary.local
+    - idp.diary.localhost
   gateways:
     - diary-gateway
   http:
@@ -22,7 +22,7 @@ metadata:
   namespace: diary
 spec:
   hosts:
-    - idp-admin.diary.local
+    - idp-admin.diary.localhost
   gateways:
     - diary-gateway
   http:
