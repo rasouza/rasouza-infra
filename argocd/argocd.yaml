@@ -2009,6 +2009,22 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
   name: argocd-cm
+data:
+  admin.enabled: "false" 
+  url: https://argocd.example.com
+
+  dex.config: |
+    connectors:
+      # GitHub example
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: 29e23ecfc4eec0814fc0
+          clientSecret: $dex.github.clientSecret
+          orgs:
+          - name: programming-diary
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -2052,6 +2068,8 @@ metadata:
     app.kubernetes.io/part-of: argocd
   name: argocd-secret
 type: Opaque
+data:
+  dex.github.clientSecret: ZDFlMDRiOTM4NzA0ZGQyZTU4MWEwZDc1NTcwYjg2YzkwMDI1NjQyNg==
 ---
 apiVersion: v1
 kind: Service

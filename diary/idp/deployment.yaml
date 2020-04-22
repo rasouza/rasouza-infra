@@ -7,7 +7,7 @@ metadata:
     app:  idp
     version: v1
 spec:
-  replicas: 1
+  replicas:
   template:
     metadata:
       labels:
@@ -26,14 +26,10 @@ spec:
           httpGet:
             path: /health/ready
             port: 4444
-          initialDelaySeconds: 90
-          timeoutSeconds: 10
         readinessProbe:
           httpGet:
             path: /health/ready
             port: 4444
-          initialDelaySeconds: 30
-          timeoutSeconds: 10
         env:
         - name: DSN
           value: "postgres://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)/$(DB_DATABASE)?search_path=$(DB_SCHEMA)"
