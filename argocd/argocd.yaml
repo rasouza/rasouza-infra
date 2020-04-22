@@ -2011,7 +2011,7 @@ metadata:
   name: argocd-cm
 data:
   admin.enabled: "false" 
-  url: https://argocd.example.com
+  url: https://argocd.localhost
 
   dex.config: |
     connectors:
@@ -2020,7 +2020,7 @@ data:
         id: github
         name: GitHub
         config:
-          clientID: 29e23ecfc4eec0814fc0
+          clientID: b61a4e47f85582578249
           clientSecret: $dex.github.clientSecret
           orgs:
           - name: programming-diary
@@ -2069,7 +2069,7 @@ metadata:
   name: argocd-secret
 type: Opaque
 data:
-  dex.github.clientSecret: ZDFlMDRiOTM4NzA0ZGQyZTU4MWEwZDc1NTcwYjg2YzkwMDI1NjQyNg==
+  dex.github.clientSecret: MGZhNDUyODI1MzQxZGYxMTAxYjhhZDFhY2JiZDI2MjNjMGVkMmMzMA==
 ---
 apiVersion: v1
 kind: Service
