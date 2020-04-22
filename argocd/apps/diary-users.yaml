@@ -15,7 +15,7 @@ spec:
     path: diary/users
 
     # kustomize specific config
-    kustomize:
+    # kustomize:
       # Optional image name prefix
       # namePrefix: stage-
 
