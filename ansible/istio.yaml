@@ -1,0 +1,8 @@
+---
+- name: "Installs Istio Service Mesh"
+  hosts: localhost
+  tasks:
+    - name: Check if istioctl is installed
+      shell: which istioctl
+    - name: Installs Istio Service Mesh
+      shell: istioctl manifest apply -f ../istio/values.yaml
