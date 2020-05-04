@@ -8,6 +8,11 @@
         api_version: v1
         kind: Namespace
         name: argocd
+    - name: Ensures SSO ConfigMap is installed
+      k8s:
+        state: present
+        namespace: argocd
+        src: ../argocd/sso.yaml
     - name: Ensures ArgoCD is installed
       k8s:
         state: present
