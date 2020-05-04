@@ -5,4 +5,6 @@
     - name: Check if istioctl is installed
       shell: which istioctl
     - name: Installs Istio Service Mesh
-      shell: istioctl manifest apply -f ../istio/values.yaml
+      shell: istioctl manifest apply -f ../istio/istio-operator.yaml
+    - name: Ensures Kiali, Jaeger, Prometheus and Grafana is exposed
+      shell: kubectl apply -f ../istio/virtualsvc.yaml
