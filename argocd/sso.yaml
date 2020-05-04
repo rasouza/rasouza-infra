@@ -15,7 +15,7 @@ metadata:
   name: argocd-cm
 data:
   admin.enabled: "false" 
-  url: https://argocd.localhost
+  url: https://argocd.test
 
   dex.config: |
     connectors:

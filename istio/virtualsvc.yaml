@@ -5,9 +5,9 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - grafana.localhost
+    - grafana.test
   gateways:
-    - ingressgateway
+    - istio-ingressgateway
   http:
   - route:
     - destination:
@@ -23,9 +23,9 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - kiali.localhost
+    - kiali.test
   gateways:
-    - ingressgateway
+    - istio-ingressgateway
   http:
   - route:
     - destination:
@@ -41,9 +41,9 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - prometheus.localhost
+    - prometheus.test
   gateways:
-    - ingressgateway
+    - istio-ingressgateway
   http:
   - route:
     - destination:
@@ -59,9 +59,9 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - jaeger.localhost
+    - jaeger.test
   gateways:
-    - ingressgateway
+    - istio-ingressgateway
   http:
   - route:
     - destination:

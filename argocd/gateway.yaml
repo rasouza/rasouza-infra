@@ -5,14 +5,14 @@ metadata:
   namespace: argocd
 spec:
   hosts:
-    - argocd.localhost
+    - argocd.test
   gateways:
     - argocd-gateway
   tls:
   - match:
     - port: 443
       sni_hosts:
-      - argocd.localhost
+      - argocd.test
     route:
     - destination:
         host: argocd-server
