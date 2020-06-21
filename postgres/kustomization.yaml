@@ -3,6 +3,8 @@ kind: Kustomization
 commonLabels:
   app: postgres
 
+namespace: postgres
+
 resources:
 - namespace.yaml
 - secret.yaml
