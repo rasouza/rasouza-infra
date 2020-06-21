@@ -2,7 +2,7 @@
 - name: Istio installation
   hosts: localhost
   vars:
-    version: 1.5.2
+    version: 1.6.3
   tasks:
     - name: Download Istio
       shell: curl -L https://istio.io/downloadIstio | sh -
