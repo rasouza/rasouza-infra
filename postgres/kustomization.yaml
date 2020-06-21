@@ -3,6 +3,8 @@ kind: Kustomization
 commonLabels:
   app: postgres
 
+namespace: postgres
+
 resources:
 - namespace.yaml
 - secret.yaml
@@ -10,3 +12,11 @@ resources:
 - templates/svc-headless.yaml
 - templates/svc.yaml
 - templates/statefulset.yaml
+- job.yaml
+
+vars:
+- name: POSTGRES_SVC
+  objref:
+    kind: Service
+    name: db-postgresql
+    apiVersion: v1

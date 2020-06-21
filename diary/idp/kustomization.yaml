@@ -10,4 +10,3 @@ resources:
 - secret.yaml
 - job.yaml
 - virtualsvc.yaml
-

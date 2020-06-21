@@ -1,0 +1,6 @@
+---
+- name: "Deploy applications"
+  hosts: localhost
+  tasks:
+    - name: kubectl apply
+      shell: kustomize build .. | kubectl apply -f -

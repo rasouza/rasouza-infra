@@ -8,7 +8,7 @@ data:
   DB_PORT: "5432"
   DB_DATABASE: diary
   DB_SCHEMA: idp
-  DB_USER: idp_user
+  DB_USER: diary_idp
   URLS_SELF_ISSUER: http://idp.diary.localhost
   URLS_CONSENT: http://users.diary.localhost/consent
   URLS_LOGIN: http://frontend.diary.localhost/auth/login

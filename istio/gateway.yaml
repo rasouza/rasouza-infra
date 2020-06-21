@@ -1,11 +1,27 @@
 apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: ingressgateway
+  namespace: istio-system
+  labels:
+    release: istio
+spec:
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+      - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: grafana-virtual-svc
   namespace: istio-system
 spec:
   hosts:
-    - grafana.localhost
+    - grafana.test
   gateways:
     - ingressgateway
   http:
@@ -23,7 +39,7 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - kiali.localhost
+    - kiali.test
   gateways:
     - ingressgateway
   http:
@@ -41,7 +57,7 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - prometheus.localhost
+    - prometheus.test
   gateways:
     - ingressgateway
   http:
@@ -59,7 +75,7 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - jaeger.localhost
+    - jaeger.test
   gateways:
     - ingressgateway
   http:
@@ -68,4 +84,3 @@ spec:
         host: tracing
         port:
           number: 80
----
