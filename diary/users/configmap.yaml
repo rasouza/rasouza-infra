@@ -6,7 +6,7 @@ metadata:
   labels:
     app: users
 data:
-  APP_URL: http://users.diary.localhost
+  APP_URL: http://users.diary.test
   IDP_URL: http://idp-svc:4444
   IDP_ADMIN_URL: http://idp-svc:4445
   APP_DEBUG: "true"

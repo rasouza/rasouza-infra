@@ -12,7 +12,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-      - "*"
+      - "*.istio.test"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -21,7 +21,7 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - grafana.test
+    - grafana.istio.test
   gateways:
     - ingressgateway
   http:
@@ -39,7 +39,7 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - kiali.test
+    - kiali.istio.test
   gateways:
     - ingressgateway
   http:
@@ -57,7 +57,7 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - prometheus.test
+    - prometheus.istio.test
   gateways:
     - ingressgateway
   http:
@@ -75,7 +75,7 @@ metadata:
   namespace: istio-system
 spec:
   hosts:
-    - jaeger.test
+    - jaeger.istio.test
   gateways:
     - ingressgateway
   http:

@@ -5,7 +5,7 @@ metadata:
   namespace: diary
 spec:
   hosts:
-    - users.diary.localhost
+    - users.diary.test
   gateways:
     - diary-gateway
   http:
