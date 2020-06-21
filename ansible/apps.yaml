@@ -1,6 +1,0 @@
----
-- name: ArgoCD set up
-  hosts: localhost
-  tasks:
-    - name: Ensures argocd Namespace exists
-      shell: kubectl apply -k ../argocd/apps/

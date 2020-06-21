@@ -4,7 +4,9 @@
   tasks:
     - name: Check if istioctl is installed
       shell: which istioctl
+    - name: Creates Login for Kiali
+      shell: kubectl apply -f ../istio/kiali-secret.yaml
     - name: Installs Istio Service Mesh
-      shell: istioctl manifest apply -f ../istio/istio-operator.yaml
+      shell: istioctl install -f ../istio/istio-operator.yaml
     - name: Ensures Kiali, Jaeger, Prometheus and Grafana is exposed
-      shell: kubectl apply -f ../istio/virtualsvc.yaml
+      shell: kubectl apply -f ../istio/gateway.yaml
