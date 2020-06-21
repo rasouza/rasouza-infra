@@ -44,4 +44,3 @@ spec:
         - containerPort: 4445
           name: admin
   revisionHistoryLimit: 0
-      

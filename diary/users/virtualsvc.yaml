@@ -14,4 +14,3 @@ spec:
         host: users-svc
         port:
           number: 8000
----

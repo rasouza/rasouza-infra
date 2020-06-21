@@ -15,4 +15,3 @@ spec:
         host: frontend-svc
         port:
           number: 80
----

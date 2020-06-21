@@ -84,4 +84,3 @@ spec:
         host: tracing
         port:
           number: 80
----
