@@ -1,5 +1,8 @@
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
+metadata:
+  namespace: istio-system
+  name: installed-state
 spec:
   addonComponents:
     grafana:
@@ -69,17 +72,6 @@ spec:
             maxSurge: 100%
             maxUnavailable: 25%
       name: istio-egressgateway
-    galley:
-      enabled: false
-      k8s:
-        replicaCount: 1
-        resources:
-          requests:
-            cpu: 100m
-        strategy:
-          rollingUpdate:
-            maxSurge: 100%
-            maxUnavailable: 25%
     ingressGateways:
     - enabled: true
       k8s:
@@ -108,36 +100,23 @@ spec:
         service:
           ports:
           - name: status-port
-            port: 15020
-            targetPort: 15020
+            port: 15021
+            targetPort: 15021
           - name: http2
             port: 80
-            targetPort: 80
+            targetPort: 8080
           - name: https
             port: 443
-          - name: kiali
-            port: 15029
-            targetPort: 15029
-          - name: prometheus
-            port: 15030
-            targetPort: 15030
-          - name: grafana
-            port: 15031
-            targetPort: 15031
-          - name: tracing
-            port: 15032
-            targetPort: 15032
+            targetPort: 8443
           - name: tls
             port: 15443
             targetPort: 15443
-          - name: tcp
-            port: 31400
         strategy:
           rollingUpdate:
             maxSurge: 100%
             maxUnavailable: 25%
       name: istio-ingressgateway
-    nodeAgent:
+    istiodRemote:
       enabled: false
     pilot:
       enabled: true
@@ -157,13 +136,9 @@ spec:
           httpGet:
             path: /ready
             port: 8080
-          initialDelaySeconds: 5
-          periodSeconds: 5
+          initialDelaySeconds: 1
+          periodSeconds: 3
           timeoutSeconds: 5
-        resources:
-          requests:
-            cpu: 500m
-            memory: 2048Mi
         strategy:
           rollingUpdate:
             maxSurge: 100%
@@ -189,14 +164,6 @@ spec:
             apiVersion: apps/v1
             kind: Deployment
             name: istio-policy
-        strategy:
-          rollingUpdate:
-            maxSurge: 100%
-            maxUnavailable: 25%
-    sidecarInjector:
-      enabled: false
-      k8s:
-        replicaCount: 1
         strategy:
           rollingUpdate:
             maxSurge: 100%
@@ -237,15 +204,19 @@ spec:
             maxSurge: 100%
             maxUnavailable: 25%
   hub: docker.io/istio
-  tag: 1.5.2
+  meshConfig:
+    defaultConfig:
+      proxyMetadata: {}
+    enablePrometheusMerge: false
+  tag: 1.6.3
   values:
+    base:
+      validationURL: ""
     clusterResources: true
-    galley:
-      enableAnalysis: false
-      image: galley
     gateways:
       istio-egressgateway:
         autoscaleEnabled: true
+        env: {}
         name: istio-egressgateway
         secretVolumes:
         - mountPath: /etc/istio/egressgateway-certs
@@ -255,11 +226,13 @@ spec:
           name: egressgateway-ca-certs
           secretName: istio-egressgateway-ca-certs
         type: ClusterIP
+        zvpn: {}
       istio-ingressgateway:
         applicationPorts: ""
         autoscaleEnabled: true
         debug: info
         domain: ""
+        env: {}
         meshExpansionPorts:
         - name: tcp-pilot-grpc-tls
           port: 15011
@@ -272,18 +245,8 @@ spec:
           targetPort: 8060
         - name: tcp-dns-tls
           port: 853
-          targetPort: 853
+          targetPort: 8853
         name: istio-ingressgateway
-        sds:
-          enabled: false
-          image: node-agent-k8s
-          resources:
-            limits:
-              cpu: 2000m
-              memory: 1024Mi
-            requests:
-              cpu: 100m
-              memory: 128Mi
         secretVolumes:
         - mountPath: /etc/istio/ingressgateway-certs
           name: ingressgateway-certs
@@ -292,15 +255,12 @@ spec:
           name: ingressgateway-ca-certs
           secretName: istio-ingressgateway-ca-certs
         type: LoadBalancer
-        zvpn:
-          enabled: false
-          suffix: global
+        zvpn: {}
     global:
       arch:
         amd64: 2
         ppc64le: 2
         s390x: 2
-      certificates: []
       configValidation: true
       controlPlaneSecurityEnabled: true
       defaultNodeSelector: {}
@@ -309,21 +269,14 @@ spec:
       defaultResources:
         requests:
           cpu: 10m
-      disablePolicyChecks: true
       enableHelmTest: false
-      enableTracing: true
-      imagePullPolicy: IfNotPresent
+      imagePullPolicy: ""
       imagePullSecrets: []
       istioNamespace: istio-system
       istiod:
+        enableAnalysis: false
         enabled: true
       jwtPolicy: third-party-jwt
-      k8sIngress:
-        enableHttps: false
-        enabled: false
-        gatewayName: ingressgateway
-      localityLbSetting:
-        enabled: true
       logAsJson: false
       logging:
         level: default:info
@@ -332,9 +285,6 @@ spec:
         useILB: false
       meshNetworks: {}
       mountMtlsCerts: false
-      mtls:
-        auto: true
-        enabled: false
       multiCluster:
         clusterName: ""
         enabled: false
@@ -342,32 +292,13 @@ spec:
       omitSidecarInjectorConfigMap: false
       oneNamespace: false
       operatorManageWebhooks: false
-      outboundTrafficPolicy:
-        mode: ALLOW_ANY
       pilotCertProvider: istiod
-      policyCheckFailOpen: false
       priorityClassName: ""
       proxy:
-        accessLogEncoding: TEXT
-        accessLogFile: ""
-        accessLogFormat: ""
         autoInject: enabled
         clusterDomain: cluster.local
         componentLogLevel: misc:error
-        concurrency: 2
-        dnsRefreshRate: 300s
         enableCoreDump: false
-        envoyAccessLogService:
-          enabled: false
-        envoyMetricsService:
-          enabled: false
-          tcpKeepalive:
-            interval: 10s
-            probes: 3
-            time: 10s
-          tlsSettings:
-            mode: DISABLE
-            subjectAltNames: []
         envoyStatsd:
           enabled: false
         excludeIPRanges: ""
@@ -375,11 +306,8 @@ spec:
         excludeOutboundPorts: ""
         image: proxyv2
         includeIPRanges: '*'
-        includeInboundPorts: '*'
-        kubevirtInterfaces: ""
         logLevel: warning
         privileged: false
-        protocolDetectionTimeout: 100ms
         readinessFailureThreshold: 30
         readinessInitialDelaySeconds: 1
         readinessPeriodSeconds: 2
@@ -402,10 +330,8 @@ spec:
             cpu: 10m
             memory: 10Mi
       sds:
-        enabled: false
         token:
           aud: istio-ca
-        udsPath: ""
       sts:
         servicePort: 0
       tracer:
@@ -414,8 +340,6 @@ spec:
         lightstep:
           accessToken: ""
           address: ""
-          cacertPath: ""
-          secure: true
         stackdriver:
           debug: false
           maxNumberOfAnnotations: 200
@@ -446,11 +370,7 @@ spec:
       envSecrets: {}
       image:
         repository: grafana/grafana
-        tag: 6.5.2
-      ingress:
-        enabled: false
-        hosts:
-        - grafana.local
+        tag: 6.7.4
       nodeSelector: {}
       persist: false
       podAntiAffinityLabelSelector: []
@@ -471,23 +391,23 @@ spec:
       coreDNSImage: coredns/coredns
       coreDNSPluginImage: istio/coredns-plugin:0.2-istio-1.1
       coreDNSTag: 1.6.2
+    istiodRemote:
+      injectionURL: ""
     kiali:
       contextPath: /kiali
       createDemoSecret: false
       dashboard:
+        auth:
+          strategy: login
         grafanaInClusterURL: http://grafana:3000
-        grafanaURL: http://grafana.localhost
         jaegerInClusterURL: http://tracing/jaeger
-        jaegerURL: http://jaeger.localhost
+        jaegerURL: http://jaeger-query:16686
+        grafanaURL: http://grafana:3000
         passphraseKey: passphrase
         secretName: kiali
         usernameKey: username
         viewOnlyMode: false
       hub: quay.io/kiali
-      ingress:
-        enabled: false
-        hosts:
-        - kiali.local
       nodeSelector: {}
       podAntiAffinityLabelSelector: []
       podAntiAffinityTermLabelSelector: []
@@ -495,7 +415,9 @@ spec:
         cert_file: /kiali-cert/cert-chain.pem
         enabled: false
         private_key_file: /kiali-cert/key.pem
-      tag: v1.15
+      service:
+        annotations: {}
+      tag: v1.18
     mixer:
       adapters:
         kubernetesenv:
@@ -536,12 +458,8 @@ spec:
         podAntiAffinityLabelSelector: []
         podAntiAffinityTermLabelSelector: []
         replicaCount: 1
-        reportBatchMaxEntries: 100
-        reportBatchMaxTime: 1s
         sessionAffinityEnabled: false
         tolerations: []
-    nodeagent:
-      image: node-agent-k8s
     pilot:
       appNamespaces: []
       autoscaleEnabled: true
@@ -551,17 +469,11 @@ spec:
       configNamespace: istio-config
       cpu:
         targetAverageUtilization: 80
-      enableProtocolSniffingForInbound: false
+      enableProtocolSniffingForInbound: true
       enableProtocolSniffingForOutbound: true
       env: {}
       image: pilot
-      ingress:
-        ingressClass: istio
-        ingressControllerMode: STRICT
-        ingressService: istio-ingressgateway
       keepaliveMaxServerConnectionAge: 30m
-      meshNetworks:
-        networks: {}
       nodeSelector: {}
       podAntiAffinityLabelSelector: []
       podAntiAffinityTermLabelSelector: []
@@ -573,10 +485,6 @@ spec:
     prometheus:
       contextPath: /prometheus
       hub: docker.io/prom
-      ingress:
-        enabled: false
-        hosts:
-        - prometheus.local
       nodeSelector: {}
       podAntiAffinityLabelSelector: []
       podAntiAffinityTermLabelSelector: []
@@ -587,27 +495,20 @@ spec:
         enabled: true
       tag: v2.15.1
       tolerations: []
-    security:
-      dnsCerts:
-        istio-pilot-service-account.istio-control: istio-pilot.istio-control
-      enableNamespacesByDefault: true
-      image: citadel
-      selfSigned: true
     sidecarInjectorWebhook:
       enableNamespacesByDefault: false
-      image: sidecar_injector
       injectLabel: istio-injection
       objectSelector:
         autoInject: true
         enabled: false
       rewriteAppHTTPProbe: true
-      selfSigned: false
     telemetry:
       enabled: true
       v1:
         enabled: false
       v2:
         enabled: true
+        metadataExchange: {}
         prometheus:
           enabled: true
         stackdriver:
@@ -617,8 +518,6 @@ spec:
           monitoring: false
           topology: false
     tracing:
-      ingress:
-        enabled: false
       jaeger:
         accessMode: ReadWriteMany
         hub: docker.io/jaegertracing
@@ -656,15 +555,15 @@ spec:
         maxSpans: 500000
         node:
           cpus: 2
-        probeStartupDelay: 200
+        probeStartupDelay: 10
         queryPort: 9411
         resources:
           limits:
-            cpu: 300m
-            memory: 900Mi
+            cpu: 1000m
+            memory: 2048Mi
           requests:
             cpu: 150m
             memory: 900Mi
-        tag: 2.14.2
+        tag: 2.20.0
     version: ""
 
