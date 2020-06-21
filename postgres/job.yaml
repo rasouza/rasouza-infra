@@ -16,4 +16,4 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
         - >
-          curl https://raw.githubusercontent.com/rasouza/diary-infra/ansible/postgres/init.sql | PGPASSWORD=postgres psql -h $(POSTGRES_SVC) -U postgres
+          curl https://raw.githubusercontent.com/rasouza/diary-infra/master/postgres/init.sql | PGPASSWORD=postgres psql -h $(POSTGRES_SVC) -U postgres
