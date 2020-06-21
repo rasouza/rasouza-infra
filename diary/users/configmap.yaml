@@ -7,8 +7,8 @@ metadata:
     app: users
 data:
   APP_URL: http://users.diary.test
-  IDP_URL: http://idp-svc:4444
-  IDP_ADMIN_URL: http://idp-svc:4445
+  IDP_URL: http://idp.diary.test
+  IDP_ADMIN_URL: http://idp-admin.diary.test
   APP_DEBUG: "true"
   APP_ENV: production
   APP_NAME: users
