@@ -9,8 +9,8 @@ data:
   DB_DATABASE: diary
   DB_SCHEMA: idp
   DB_USER: diary_idp
-  URLS_SELF_ISSUER: http://idp.diary.test
-  URLS_CONSENT: http://users.diary.test/consent
-  URLS_LOGIN: http://frontend.diary.test/auth/login
-  URLS_LOGOUT: http://frontend.diary.test/auth/logout
+  URLS_SELF_ISSUER: http://idp.diary.localhost
+  URLS_CONSENT: http://users.diary.localhost/consent
+  URLS_LOGIN: http://frontend.diary.localhost/auth/login
+  URLS_LOGOUT: http://frontend.diary.localhost/auth/logout
   OIDC_SUBJECT_IDENTIFIERS_SUPPORTED_TYPES: public,pairwise
