@@ -6,8 +6,8 @@ metadata:
   labels:
     app: users
 data:
-  APP_URL: http://users.diary.test
-  IDP_URL: http://idp.diary.test
+  APP_URL: http://users.diary.localhost
+  IDP_URL: http://idp.diary.localhost
   IDP_ADMIN_URL: http://idp-svc:4445
   APP_DEBUG: "true"
   APP_ENV: production
