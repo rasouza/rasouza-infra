@@ -18,6 +18,15 @@ spec:
         version: v1
     spec:
       restartPolicy: Always
+      initContainers:
+      - name: users-migrate
+        image: rasouza/diary-users
+        command: ["php", "artisan", "migrate", "--force", "--no-interaction"]
+        envFrom:
+        - configMapRef:
+            name: users-config
+        - secretRef:
+            name: users-secret
       containers:
       - image: rasouza/diary-users
         name: users
