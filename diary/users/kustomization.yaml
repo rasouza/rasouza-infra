@@ -12,4 +12,4 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 images:
 - name: rasouza/diary-users
-  newTag: b4872a2
+  newTag: dc0c3a6
