@@ -10,7 +10,7 @@ data:
   IDP_URL: http://idp-svc:4444
   IDP_EXTERNAL_URL: http://idp.diary.localhost
   IDP_ADMIN_URL: http://idp-svc:4445
-  FRONTEND_URL: http://web.diary.localhost
+  FRONTEND_URL: http://frontend.diary.localhost
   APP_DEBUG: "true"
   APP_ENV: production
   APP_NAME: users
