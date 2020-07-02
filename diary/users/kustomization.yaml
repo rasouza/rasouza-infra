@@ -1,14 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 commonLabels:
   app: users
+
+namespace: diary
 
 resources:
 - deployment.yaml
 - service.yaml
 - virtualsvc.yaml
-- configmap.yaml
-- secret.yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+
 images:
 - name: rasouza/diary-users
   newTag: d3b1bcc
+
+configMapGenerator:
+  - name: users-config
+    envs: 
+    - envs/app.env
+    - envs/urls.env
+
+secretGenerator:
+  - name: users-secret
+    type: "Opaque"
+    envs:
+    - envs/db.env
+    - envs/credentials.env
