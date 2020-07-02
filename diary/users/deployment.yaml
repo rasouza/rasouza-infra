@@ -37,4 +37,7 @@ spec:
             name: users-config
         - secretRef:
             name: users-secret
+        env:
+        - name: SECRET_TOKEN
+          value: $(MY_SERVICE_NAME)
   revisionHistoryLimit: 0

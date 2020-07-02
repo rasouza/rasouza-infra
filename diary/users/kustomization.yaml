@@ -27,3 +27,10 @@ secretGenerator:
     envs:
     - envs/db.env
     - envs/credentials.env
+
+vars:
+  - name: MY_SERVICE_NAME
+    objref:
+      kind: Service
+      name: users-svc
+      apiVersion: v1
