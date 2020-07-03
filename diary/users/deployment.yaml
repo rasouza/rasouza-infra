@@ -34,8 +34,6 @@ spec:
         envFrom:
         - configMapRef:
             name: users-config
-        - configMapRef:
-            name: urls-config
         - secretRef:
             name: users-secret
         env:

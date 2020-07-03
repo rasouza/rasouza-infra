@@ -55,7 +55,7 @@ spec:
           value: public/pairwise
         envFrom:
         - configMapRef:
-            name: urls-config
+            name: idp-config
         - secretRef:
             name: idp-secret
         ports:
