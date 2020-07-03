@@ -1,12 +1,22 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
+bases:
+- ../base
+
 commonLabels:
   app: idp
+
+namespace: diary
 
 resources:
 - deployment.yaml
 - service.yaml
-- configmap.yaml
-- secret.yaml
-- job.yaml
 - virtualsvc.yaml
+
+secretGenerator:
+  - name: idp-secret
+    type: Opaque
+    envs:
+      - envs/db.env
+      - envs/secrets.env
