@@ -25,7 +25,7 @@ spec:
         - name: nginx-config
           mountPath: /etc/nginx/conf.d
         - name: env-config
-          mountPath: /usr/share/nginx/html
+          mountPath: /usr/share/nginx/html/env
       volumes:
       - name: nginx-config
         configMap:

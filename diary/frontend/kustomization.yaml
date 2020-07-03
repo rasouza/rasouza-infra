@@ -16,9 +16,9 @@ images:
   newTag: 98f7578
 
 configMapGenerator:
-  - name: nginx-config
-    files:
-      - envs/default.conf
-  - name: env-config
-    files:
-      - envs/config.js
+- name: nginx-config
+  files:
+    - envs/default.conf
+- name: env-config
+  files:
+    - envs/config.js
