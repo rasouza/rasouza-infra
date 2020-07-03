@@ -1,13 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 commonLabels:
   app: frontend
+
+namespace: diary
 
 resources:
 - deployment.yaml
 - service.yaml
 - virtualsvc.yaml
-- configmap.yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
+
 images:
 - name: rasouza/diary-frontend
   newTag: 98f7578
+
+configMapGenerator:
+  - name: nginx-config
+    files:
+      - envs/default.conf
+  - name: env-config
+    files:
+      - envs/config.js

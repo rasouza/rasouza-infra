@@ -1,0 +1,1 @@
+window.USERS_URL='http://users.diary.localhost';

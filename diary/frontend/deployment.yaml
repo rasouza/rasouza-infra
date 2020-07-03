@@ -22,11 +22,16 @@ spec:
         ports:
         - containerPort: 8000
         volumeMounts:
-        - name: frontend-config
+        - name: nginx-config
           mountPath: /etc/nginx/conf.d
+        - name: env-config
+          mountPath: /usr/share/nginx/html
       volumes:
-      - name: frontend-config
+      - name: nginx-config
         configMap:
-          name: frontend-config
+          name: nginx-config
+      - name: env-config
+        configMap:
+          name: env-config
       restartPolicy: Always
   revisionHistoryLimit: 0
