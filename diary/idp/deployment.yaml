@@ -18,6 +18,9 @@ spec:
       - image: oryd/hydra:v1.4.5
         name: idp-migrate
         command: ["hydra", "migrate", "sql", "-e", "--yes"]
+        envFrom:
+        - secretRef:
+            name: idp-secret
         env:
         - name: DSN
           value: "postgres://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)/$(DB_DATABASE)?search_path=$(DB_SCHEMA)"  
