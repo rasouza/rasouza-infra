@@ -2,10 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: users
     service: users
   name: users-svc
-  namespace: diary
 spec:
   ports:
   - name: http

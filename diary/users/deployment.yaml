@@ -5,7 +5,6 @@ metadata:
     app: users
     version: v1
   name: users-deployment
-  namespace: diary
 spec:
   replicas: 1
   selector:
@@ -35,9 +34,11 @@ spec:
         envFrom:
         - configMapRef:
             name: users-config
+        - configMapRef:
+            name: urls-config
         - secretRef:
             name: users-secret
         env:
-        - name: SECRET_TOKEN
-          value: $(MY_SERVICE_NAME)
+        - name: APP_URL
+          value: $(USERS_URL)
   revisionHistoryLimit: 0
