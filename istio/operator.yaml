@@ -4,6 +4,7 @@ metadata:
   namespace: istio-system
   name: installed-state
 spec:
+  profile: default
   addonComponents:
     grafana:
       enabled: true

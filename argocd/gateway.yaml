@@ -12,7 +12,7 @@ spec:
       name: http
       protocol: HTTP
     hosts:
-      - "argocd.test"
+      - "argocd.localhost"
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -21,7 +21,7 @@ metadata:
   namespace: argocd
 spec:
   hosts:
-    - argocd.test
+    - argocd.localhost
   gateways:
     - argocd-gateway
   http:
