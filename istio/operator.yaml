@@ -401,8 +401,8 @@ spec:
           strategy: login
         grafanaInClusterURL: http://grafana:3000
         jaegerInClusterURL: http://tracing/jaeger
-        jaegerURL: http://jaeger-query:16686
-        grafanaURL: http://grafana:3000
+        jaegerURL: http://jaeger.istio.localhost
+        grafanaURL: http://grafana.istio.localhost
         passphraseKey: passphrase
         secretName: kiali
         usernameKey: username
