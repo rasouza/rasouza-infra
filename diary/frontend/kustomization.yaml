@@ -13,12 +13,12 @@ resources:
 
 images:
 - name: rasouza/diary-frontend
-  newTag: 98f7578
+  newTag: e4059d8
 
 configMapGenerator:
-- name: nginx-config
-  files:
-    - envs/default.conf
-- name: env-config
-  files:
-    - envs/config.js
+- files:
+  - envs/default.conf
+  name: nginx-config
+- files:
+  - envs/config.js
+  name: env-config
