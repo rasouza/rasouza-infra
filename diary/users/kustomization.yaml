@@ -13,17 +13,17 @@ resources:
 
 images:
 - name: rasouza/diary-users
-  newTag: d3b1bcc
+  newTag: b2d7c20
 
 configMapGenerator:
-  - name: users-config
-    envs: 
-    - envs/app.env
-    - envs/urls.env
+- envs:
+  - envs/app.env
+  - envs/urls.env
+  name: users-config
 
 secretGenerator:
-  - name: users-secret
-    type: "Opaque"
-    envs:
-    - envs/db.env
-    - envs/credentials.env
+- envs:
+  - envs/db.env
+  - envs/credentials.env
+  name: users-secret
+  type: Opaque
