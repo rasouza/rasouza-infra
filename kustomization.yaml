@@ -3,4 +3,3 @@ kind: Kustomization
 
 bases:
 - argocd
-- argocd/apps
