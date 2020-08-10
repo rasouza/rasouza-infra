@@ -2,7 +2,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
   name: argocd-gateway
-  namespace: argocd
   labels:
     release: istio
 spec:
@@ -18,7 +17,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: argocd-virtual-svc
-  namespace: argocd
 spec:
   hosts:
     - argocd.localhost
@@ -35,7 +33,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: argocd-dtrl
-  namespace: argocd
 spec:
   host: argocd-server.argocd.svc.cluster.local
   trafficPolicy:
