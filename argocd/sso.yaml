@@ -14,11 +14,11 @@ metadata:
   name: argocd-cm
 data:
   admin.enabled: "false" 
-  url: http://argocd.localhost
+  url: https://argocd.rasouza.dev
 
   dex.config: |
     connectors:
-      # GitHub example
+      # Programming Diary Organization
       - type: github
         id: github
         name: GitHub
@@ -27,14 +27,3 @@ data:
           clientSecret: $dex.github.clientSecret
           orgs:
           - name: programming-diary
----
-apiVersion: v1
-kind: Secret
-metadata:
-  labels:
-    app.kubernetes.io/name: argocd-secret
-    app.kubernetes.io/part-of: argocd
-  name: argocd-secret
-type: Opaque
-data:
-  dex.github.clientSecret: MGZhNDUyODI1MzQxZGYxMTAxYjhhZDFhY2JiZDI2MjNjMGVkMmMzMA==
