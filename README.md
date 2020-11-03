@@ -5,7 +5,7 @@
 This repository holds all k8s YAML necessary to run [Diary](https://github.com/users/rasouza/projects/2) microservices
 
 ## Features
-- ArgoCD Operator
+- ArgoCD
 - NGINX Ingress Controller 1.9.0
 
 ## URLs
