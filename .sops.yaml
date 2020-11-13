@@ -3,3 +3,7 @@ creation_rules:
   encrypted_regex: '^(data|stringData)$'
   pgp: >-
     A893A7CE422E149B3CCC8A49A1924D586049F75E
+
+- path_refex: .*\.env$
+  pgp: >-
+    A893A7CE422E149B3CCC8A49A1924D586049F75E

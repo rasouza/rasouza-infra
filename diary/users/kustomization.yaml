@@ -21,9 +21,12 @@ configMapGenerator:
   - envs/urls.env
   name: users-config
 
-secretGenerator:
-- envs:
-  - envs/db.env
-  - envs/credentials.env
-  name: users-secret
-  type: Opaque
+# secretGenerator:
+# - envs:
+#   - envs/db.env
+#   - envs/credentials.env
+#   name: users-secret
+#   type: Opaque
+
+generators:
+- secret-generator.yaml
