@@ -28,9 +28,18 @@ patchesJson6902:
       path: /spec/template/spec/containers/0/command/-
       value: --insecure
   
-# - target:
-#     version: v1
-#     kind: Secret
-#     name: argocd-secret
-#   path: github-secret.yaml
+- target:
+    version: v1
+    kind: Secret
+    name: argocd-secret
+  path: github-secret.yaml
     
+secretGenerator:
+  - name: sops-kms-svc-acc
+    files:
+    - sops/service-account.json
+
+configMapGenerator:
+- name: gcloud-credentials
+  envs:
+  - sops/gcloud.env
