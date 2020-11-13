@@ -1,5 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 commonLabels:
   app: argocd
 
@@ -9,11 +10,12 @@ resources:
 - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 - ingress.yaml
 - namespace.yaml
-- cloudflare-tls.json
-- secrets.json
+# - cloudflare-tls.decrypted.yaml
 
 patchesStrategicMerge:
 - sso.yaml
+- sops/enablePlugins.yaml
+- sops/sopsSecretsGenerator.yaml
 
 patchesJson6902:
 - target:
@@ -32,6 +34,6 @@ patchesJson6902:
     name: argocd-secret
   patch: |-
     - op: add
-      path: /metadata/annotations
+      path: /data
       value:
-        sealedsecrets.bitnami.com/managed: "true"
+        dex.github.clientSecret: ZGE5NjIyOTY5MTU0ODUxYWFhMjBkZWI4MzI4YjdjMmEyOGUyNzVhZQ==
