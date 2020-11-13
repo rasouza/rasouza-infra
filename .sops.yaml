@@ -1,9 +1,9 @@
 creation_rules:
 - path_regex: .*\.yaml$
   encrypted_regex: '^(data|stringData)$'
-  pgp: >-
-    A893A7CE422E149B3CCC8A49A1924D586049F75E
+  gcp_kms: >-
+    projects/programming-diary-prod/locations/global/keyRings/sops/cryptoKeys/sops-key
 
 - path_refex: .*\.env$
-  pgp: >-
-    A893A7CE422E149B3CCC8A49A1924D586049F75E
+  gcp_kms: >-
+    projects/programming-diary-prod/locations/global/keyRings/sops/cryptoKeys/sops-key

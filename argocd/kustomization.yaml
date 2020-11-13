@@ -10,7 +10,7 @@ resources:
 - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 - ingress.yaml
 - namespace.yaml
-# - cloudflare-tls.decrypted.yaml
+# - cloudflare.yaml
 
 patchesStrategicMerge:
 - sso.yaml
@@ -28,12 +28,9 @@ patchesJson6902:
       path: /spec/template/spec/containers/0/command/-
       value: --insecure
   
-- target:
-    version: v1
-    kind: Secret
-    name: argocd-secret
-  patch: |-
-    - op: add
-      path: /data
-      value:
-        dex.github.clientSecret: ZGE5NjIyOTY5MTU0ODUxYWFhMjBkZWI4MzI4YjdjMmEyOGUyNzVhZQ==
+# - target:
+#     version: v1
+#     kind: Secret
+#     name: argocd-secret
+#   path: github-secret.yaml
+    
