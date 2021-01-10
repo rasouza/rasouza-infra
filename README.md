@@ -10,3 +10,9 @@ This repository holds all k8s YAML necessary to run [Diary](https://github.com/u
 
 ## URLs
 - ArgoCD - https://argocd.rasouza.dev
+
+## Troubleshooting
+
+### `Error decrypting key: googleapi: Error 403: Permission` while SOPS decrypt
+
+Make sure you activated the right project using `gcloud config configurations activate [project-name]` then run `gcloud auth application-default login`
