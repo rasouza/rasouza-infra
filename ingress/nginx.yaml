@@ -288,3 +288,8 @@ metadata:
   name: nginx
 spec:
   controller: nginx.org/ingress-controller
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name:  nginx-ingress
