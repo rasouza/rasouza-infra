@@ -1,0 +1,46 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    name: buildkite
+    namespace: argocd
+    finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+    destination:
+        name: ""
+        namespace: buildkite
+        server: https://kubernetes.default.svc
+    source:
+        path: ""
+        repoURL: https://buildkite.github.io/charts/
+        targetRevision: 0.5.0
+        chart: agent
+        helm:
+            parameters:
+            -   name: ENC[AES256_GCM,data:bSjy8EbA5j1vfXY=,iv:IzjIbzXgK8MhvAzFn7OB5d8jf3cEUhDfbR6H/6UoeBA=,tag:EMSHZfNclREZtTfJ9hdqGQ==,type:str]
+                value: ENC[AES256_GCM,data:DgymLgn7WsnVJ4haz4+oAGsVGwcZ1ZizNMQQrDGhDxYRhgTwz0ctgZHi2RP4zPWVv/w=,iv:s/UJsupinR/i3oN+Hjg5iw0ZCmn4+V8W5cTuwwlkGeQ=,tag:NvYCc8XrsHcQPKYh6c6Lmw==,type:str]
+            -   name: ENC[AES256_GCM,data:IjUJVuYOtOYO5g==,iv:GJtgIZG9rpcqLQzqOJgzhuYan9mJRgcj2x8bwALwcmU=,tag:8+FLbIIhH7YSzexdcYMYjg==,type:str]
+                value: ENC[AES256_GCM,data:v0Od9gv5+RUf4B1YidOXs9/StOqxbNdWq1nG21Mbm7c1Ep44uQ==,iv:1i+ORQbFjTlSVg5Ad589Y+vHqAC0IAsmJVFKrKwgHHw=,tag:OJYirM6cR6RIMkoiJouZ3A==,type:str]
+            -   name: ENC[AES256_GCM,data:MHoYupRY69e4qAXfz9QTKDb5tRGTiBB4ELs=,iv:VXizZ1p/dD2/vaElXmq8m7lQEB2akrS5hEA8SvyTrqo=,tag:pdxjQLmqHz54pGAyoEQC8w==,type:str]
+                value: ENC[AES256_GCM,data:uXIhpmXHFu4fYBNc5XxaQSLLxGk0S9/vboQIyIIO/iJ+fYjWYxKRWiOwU8I7dlt+Pnn+9T/345Rputht808392w5BLUU/Ki4kHyXY2E7zlhIH3xgcuLwU9rXhT2GuJqPYTru/N8nWU1c7C6K1i8fzJ+FVJpI5OPSdt/pa1U48wYQr0GeCCsb//uI2OcamH98Kiq0HO7z6YxBI5myTPOPkUIE8ZBV4zOeAi86w9r6jzBVIkbq+eqRZdBfHsTgZ7VtCClwqsE9i/kxq0kmL+987RCTjDNvwZIBzWbSnF72m1KEFqnIeB2LwUx0YOsunTB9XerPvOrSgXwHojBwKG+svcCLVsEEGbQnGih3BX7s+82SNB6vHu0JXVqD3s3CNvLqt56VwyOqkndbp/aFvnRDw5iMGeYMY/mouQDwZwtaRw46P3qIBufs/2sWpZbOB8buJXvT6HHbSISv18YB,iv:dVeQwsRv1PaAV1QcJ8baCjszydtrwHR8+C8fnqfCwTA=,tag:eP2GvQVaodL/f0QvVargeA==,type:str]
+            -   name: ENC[AES256_GCM,data:aRn9EzGv4QF5JrpEiQ==,iv:5lsU+GtFEUZ/uSaml/Ioebpitlee8KT+y0AsVZb9dSo=,tag:ccc0dqTgFAS8F91Oyjnzsg==,type:str]
+                value: ENC[AES256_GCM,data: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,iv:Ue/MpiZo0/lMCkNvka1Xmn6jhZ8M3b1fGMpZTTJBSE4=,tag:pTL9s4AwQHUFsNK5ToB1cA==,type:str]
+    project: default
+    syncPolicy:
+        automated:
+            prune: true
+        syncOptions:
+        - CreateNamespace=true
+sops:
+    kms: []
+    gcp_kms:
+    -   resource_id: projects/programming-diary-prod/locations/global/keyRings/sops/cryptoKeys/sops-key
+        created_at: '2021-01-10T21:54:21Z'
+        enc: CiQAFnBk+EdCyhwEshGVyhgqj1ssR37PrrUm230iVn3k663mF9gSSQBlm1NMQmbplXecwz9/q1z+RBQHyqiXb4TjfzJ7ok/dCcPqu3i5Jp119c2NdwGFl2L7JkWgHnBbDV4aoepbYTS+FYvwD7bSrWE=
+    azure_kv: []
+    hc_vault: []
+    lastmodified: '2021-01-10T21:54:22Z'
+    mac: ENC[AES256_GCM,data:IKhM1b+DR0XYPecMMXlTUR8AmzYuBUTfhecxxD8GH1ZASwNR0AFRw1htlQblWcMO27zAbiZfEroQQpn8OraNzpyJ16OlRCcbK2BcRFJ9Nw1QXAu//0g0pnjzvGE8ZxRVttKfFSFp7lEJFbcqjgnNtFA63eFce5p3xztd0kfwRnM=,iv:lxS1BL3mzAxEGl5fTUemSPm/yKGhD6kziDgNH47+H7M=,tag:OrGW/VeywH9lKbwh8zDJlw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData|parameters)$
+    version: 3.6.1
