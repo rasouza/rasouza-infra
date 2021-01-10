@@ -10,10 +10,10 @@ resources:
 - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 - ingress.yaml
 - namespace.yaml
-# - cloudflare.yaml
+- cloudflare.yaml
 
 patchesStrategicMerge:
-- sso.yaml
+- configmap.yaml
 - sops/enablePlugins.yaml
 - sops/sopsSecretsGenerator.yaml
 

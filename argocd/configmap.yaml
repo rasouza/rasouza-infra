@@ -27,3 +27,6 @@ data:
           clientSecret: $dex.github.clientSecret
           orgs:
           - name: programming-diary
+  repositories: |
+    - type: helm
+      url: https://buildkite.github.io/charts/
