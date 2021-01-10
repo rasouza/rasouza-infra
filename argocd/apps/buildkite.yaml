@@ -14,10 +14,8 @@ spec:
     targetRevision: master
     path: buildkite
 
-    # kustomize specific config
-    # kustomize:
-      # Optional image name prefix
-      # namePrefix: stage-
+    helm:
+      
 
   # Destination cluster and namespace to deploy the application
   destination:
@@ -26,7 +24,6 @@ spec:
 
   # Sync policy
   syncPolicy:
-    automated:
-      prune: true # Specifies if resources should be pruned during auto-syncing ( false by default ).
-      selfHeal: true # Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
-    validate: true # Validate resources before applying to k8s, defaults to true.
+    automated: null
+    syncOptions:
+      - CreateNamespace=true
