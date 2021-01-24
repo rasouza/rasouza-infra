@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: gravitee-idp
+  namespace: argocd
 spec:
   destination:
     name: ''
