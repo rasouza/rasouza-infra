@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: Gravitee IdP
+spec:
+  destination:
+    name: ''
+    namespace: idp
+    server: 'https://kubernetes.default.svc'
+  source:
+    repoURL: https://github.com/rasouza/diary-infra.git
+    targetRevision: master
+    path: idp
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
