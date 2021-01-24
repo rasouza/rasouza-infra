@@ -1,0 +1,25 @@
+---
+# Source: am/templates/ui/ui-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: idp-am-management-ui
+  labels:
+    app.kubernetes.io/name: am
+    app.kubernetes.io/instance: idp
+    app.kubernetes.io/version: 3.5.0
+    app.kubernetes.io/component: "management-ui"
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: am-1.0.12
+  annotations:
+spec:
+  type: "ClusterIP"
+  ports:
+    - port: 8002
+      targetPort: 8080
+      protocol: TCP
+      name: management-ui
+  selector:
+    app.kubernetes.io/name: am
+    app.kubernetes.io/instance: idp
+    app.kubernetes.io/component: "management-ui"

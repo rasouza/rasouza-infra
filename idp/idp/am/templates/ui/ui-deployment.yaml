@@ -1,0 +1,68 @@
+---
+# Source: am/templates/ui/ui-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: idp-am-management-ui
+  labels:
+    app.kubernetes.io/name: am
+    app.kubernetes.io/instance: idp
+    app.kubernetes.io/version: 3.5.0
+    app.kubernetes.io/component: "management-ui"
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: am-1.0.12
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: am
+      app.kubernetes.io/instance: idp
+      app.kubernetes.io/component: "management-ui"
+  template:
+    metadata:
+      annotations:
+        chaos.alpha.kubernetes.io/enabled: "false"
+        checksum/config: b322387a439863a445382a98374463abb1070a8a1a24e2b968e10a42ae94fe5a
+      labels:
+        app.kubernetes.io/name: am
+        app.kubernetes.io/instance: idp
+        app.kubernetes.io/component: "management-ui"
+    spec:
+      containers:
+        - name: idp-am-management-ui
+          image: "graviteeio/am-management-ui:3.5.0"
+          imagePullPolicy: Always
+          env:
+            - name: MGMT_API_URL
+              value: "https://idp.rasouza.dev"
+            - name: MGMT_UI_URL
+              value: "https://idp.rasouza.dev/ui"
+          ports:
+            - name: http
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 30
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+      volumes:
+        - name: config
+          configMap:
+            name: idp-am-management-ui
