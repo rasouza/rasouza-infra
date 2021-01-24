@@ -1,0 +1,105 @@
+---
+# Source: am/templates/gateway/gateway-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: idp-am-gateway
+  labels:
+    app.kubernetes.io/name: am
+    app.kubernetes.io/instance: idp
+    app.kubernetes.io/version: 3.5.0
+    app.kubernetes.io/component: "gateway"
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: am-1.0.12
+data:
+  gravitee.yml: |
+    # Gateway HTTP server
+    http:
+      port: 8092
+      host: 0.0.0.0
+    #  idleTimeout: 0
+    #  tcpKeepAlive: true
+    #  compressionSupported: false
+    #  instances: 0
+      alpn: true
+
+    management:
+      type: mongodb
+      mongodb:
+        uri: mongodb+srv://rasouza:Dbzhpg123%21%40%23@cluster0.lwzxh.gcp.mongodb.net/test?authSource=admin&replicaSet=atlas-fmixfp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true
+        
+
+    oauth2:
+      type: mongodb
+      mongodb:
+        uri: mongodb+srv://rasouza:Dbzhpg123%21%40%23@cluster0.lwzxh.gcp.mongodb.net/test?authSource=admin&replicaSet=atlas-fmixfp-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true
+        
+
+    services:
+      core:
+        http:
+          port: 18092
+          host: localhost
+          authentication:
+            # authentication type to be used for the core services
+            # - none : to disable authentication
+            # - basic : to use basic authentication
+            # default is "basic"
+            type: basic
+            users:
+              admin: adminadmin
+
+    jwt:
+      secret: s3cR3t4grAv1t3310AMS1g1ingDftK3y
+      #kid: default-gravitee-AM-key
+      #expire-after: 604800
+      #issuer: https://gravitee.am
+      #cookie-path: /
+      #cookie-domain: .gravitee.io cookie domain (default "")
+      #cookie-secure: true
+
+    # SMTP configuration used to send mails
+    email:
+      enabled: true 
+      host: smtp.example.com
+      subject: "[gravitee] %s"
+      port: 25
+      from: info@example.com
+      username: info@example.com
+      password: example.com
+      properties:
+        auth: true
+        starttls.enable: false
+
+    # User management configuration
+    user:
+      # Password complexity validation policy
+      # Applications should enforce password complexity rules to discourage easy to guess passwords.
+      # Passwords should require a minimum level of complexity that makes sense for the application and its user population.
+      #password:
+      #  policy:
+      #    pattern: ^(?=\s*\S).*$ # Regex pattern for password validation (default to ^(?=\s*\S).*$ (non empty string))
+                                  # Example : ^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$
+                                  # ^                # start-of-string
+                                  #(?=.*[0-9])       # a digit must occur at least once
+                                  #(?=.*[a-z])       # a lower case letter must occur at least once
+                                  #(?=.*[A-Z])       # an upper case letter must occur at least once
+                                  #(?=.*[@#$%^&+=])  # a special character must occur at least once
+                                  #(?=\S+$)          # no whitespace allowed in the entire string
+                                  #.{8,}             # anything, at least eight places though
+                                  #$                 # end-of-string
+      registration:
+        email:
+          #subject: New user registration
+        token:
+          #expire-after: 86400 # the end of validity of the token in seconds for registration email (default 86400 = a day)
+      resetPassword:
+        email:
+          #subject: Please reset your password
+        token:
+          #expire-after: 86400 # the end of validity of the token in seconds for reset password email (default 86400 = a day)
+
+    handlers:
+      request:
+        transaction:
+          header: X-Gravitee-Transaction-Id

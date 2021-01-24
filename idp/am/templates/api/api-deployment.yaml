@@ -1,0 +1,65 @@
+---
+# Source: am/templates/api/api-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: idp-am-management-api
+  labels:
+    app.kubernetes.io/name: am
+    app.kubernetes.io/instance: idp
+    app.kubernetes.io/version: 3.5.0
+    app.kubernetes.io/component: "management-api"
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: am-1.0.12
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: am
+      app.kubernetes.io/instance: idp
+      app.kubernetes.io/component: "management-api"
+  template:
+    metadata:
+      annotations:
+        chaos.alpha.kubernetes.io/enabled: "false"
+        checksum/config: 09d715231cccc6011ec46b0793e91bce02d707699c69557dd10c5da86a3b204e
+      labels:
+        app.kubernetes.io/name: am
+        app.kubernetes.io/instance: idp
+        app.kubernetes.io/component: "management-api"
+    spec:
+      containers:
+        - name: idp-am-management-api
+          image: "graviteeio/am-management-api:3.5.0"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8093
+          livenessProbe:
+            tcpSocket:
+              port: 8093
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          readinessProbe:
+            tcpSocket:
+              port: 8093
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1024Mi
+            requests:
+              cpu: 200m
+              memory: 512Mi
+          volumeMounts:
+            - name: config
+              mountPath: /opt/graviteeio-am-management-api/config/gravitee.yml
+              subPath: gravitee.yml
+      volumes:
+        - name: config
+          configMap:
+            name: idp-am-management-api

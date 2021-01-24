@@ -1,0 +1,25 @@
+---
+# Source: am/templates/gateway/gateway-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: idp-am-gateway
+  labels:
+    app.kubernetes.io/name: am
+    app.kubernetes.io/instance: idp
+    app.kubernetes.io/version: 3.5.0
+    app.kubernetes.io/component: "gateway"
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: am-1.0.12
+  annotations:
+spec:
+  type: "ClusterIP"
+  ports:
+    - port: 82
+      targetPort: 8092
+      protocol: TCP
+      name: gateway
+  selector:
+    app.kubernetes.io/name: am
+    app.kubernetes.io/instance: idp
+    app.kubernetes.io/component: "gateway"

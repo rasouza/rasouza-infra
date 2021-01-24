@@ -1,0 +1,65 @@
+---
+# Source: am/templates/gateway/gateway-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: idp-am-gateway
+  labels:
+    app.kubernetes.io/name: am
+    app.kubernetes.io/instance: idp
+    app.kubernetes.io/version: 3.5.0
+    app.kubernetes.io/component: "gateway"
+    app.kubernetes.io/managed-by: Helm
+    helm.sh/chart: am-1.0.12
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: am
+      app.kubernetes.io/instance: idp
+      app.kubernetes.io/component: "gateway"
+  template:
+    metadata:
+      annotations:
+        chaos.alpha.kubernetes.io/enabled: "false"
+        checksum/config: c72387155e61122129f96e6bc31e015b7ac08e849115e1ba170ae485727d8154
+      labels:
+        app.kubernetes.io/name: am
+        app.kubernetes.io/instance: idp
+        app.kubernetes.io/component: "gateway"
+    spec:
+      containers:
+        - name: idp-am-gateway
+          image: "graviteeio/am-gateway:3.5.0"
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8092
+          livenessProbe:
+            tcpSocket:
+              port: 8092
+            initialDelaySeconds: 60
+            periodSeconds: 30
+          readinessProbe:
+            tcpSocket:
+              port: 8092
+            initialDelaySeconds: 5
+            periodSeconds: 30
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 200m
+              memory: 256Mi
+          volumeMounts:
+            - name: config
+              mountPath: /opt/graviteeio-am-gateway/config/gravitee.yml
+              subPath: gravitee.yml
+      volumes:
+        - name: config
+          configMap:
+            name: idp-am-gateway
