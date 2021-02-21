@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  idp-deployment
+  labels:
+    app:  idp
+    version: v1
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  idp
+        version: v1
+    spec:
+      initContainers:
+      - image: oryd/kratos:v0.5.5-alpha.1
+        name: idp-migrate
+        command: ["kratos", "migrate", "sql", "-e", "--yes"]
+        envFrom:
+        - secretRef:
+            name: idp-secret-generator
+        - configMapRef:
+            name: idp-env
+        volumeMounts:
+          - name: idp-config-volume
+            mountPath: /etc/kratos
+          - name: idp-secret-volume
+            mountPath: /etc/kratos
+        env:
+        - name: DSN
+          value: "postgres://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)/$(DB_DATABASE)?search_path=$(DB_SCHEMA)"  
+      containers:    
+      - image:  oryd/kratos:v0.5.5-alpha.1
+        name:  idp
+        command: ["kratos", "serve"]
+        # livenessProbe:
+        #   httpGet:
+        #     path: /health/ready
+        #     port: 4444
+        # readinessProbe:
+        #   httpGet:
+        #     path: /health/ready
+        #     port: 4444
+        env:
+        - name: DSN
+          value: "postgres://$(DB_USER):$(DB_PASSWORD)@$(DB_HOST):$(DB_PORT)/$(DB_DATABASE)?search_path=$(DB_SCHEMA)"
+        envFrom:
+        - configMapRef:
+            name: idp-env
+        - secretRef:
+            name: idp-secret-generator
+        ports:
+        - containerPort: 4433
+          name:  public
+        - containerPort: 4434
+          name: admin
+        volumeMounts:
+          - name: idp-config-volume
+            mountPath: /etc/kratos
+          - name: idp-secret-volume
+            mountPath: /home/ory
+      volumes:
+        - name: idp-config-volume
+          configMap:
+            name: idp-config
+        - name: idp-secret-volume
+          secret:
+            secretName: idp-secret-generator
+            items:
+            - key: kratos.enc.yaml
+              path: .kratos.yaml
+  revisionHistoryLimit: 0
