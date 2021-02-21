@@ -1,23 +1,31 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
 commonLabels:
   app: idp
 
 namespace: idp
 
 resources:
-- am/templates/api/api-autoscaler.yaml
-- am/templates/api/api-configmap.yaml
-- am/templates/api/api-deployment.yaml
-- am/templates/api/api-ingress.yaml
-- am/templates/api/api-service.yaml
-- am/templates/gateway/gateway-autoscaler.yaml
-- am/templates/gateway/gateway-configmap.yaml
-- am/templates/gateway/gateway-deployment.yaml
-- am/templates/gateway/gateway-ingress.yaml
-- am/templates/gateway/gateway-service.yaml
-- am/templates/ui/ui-autoscaler.yaml
-- am/templates/ui/ui-configmap.yaml
-- am/templates/ui/ui-deployment.yaml
-- am/templates/ui/ui-service.yaml
-- am/templates/ui/ui-ingress.yaml
+- deployment.yaml
+- service.yaml
+- ingress.yaml
+
+configMapGenerator:
+  - name: idp-env
+    envs: 
+    - envs/kratos.env
+  - name: idp-config
+    files:
+    - data/identity.schema.json
+    - data/oidc.github.jsonnet
+
+# secretGenerator:
+#   - name: idp-secret
+#     type: Opaque
+#     envs:
+#       - envs/db.env
+#       - envs/secrets.env
+
+generators:
+- secret-generator.yaml

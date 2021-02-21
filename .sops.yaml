@@ -1,6 +1,6 @@
 creation_rules:
 - path_regex: .*\.yaml$
-  encrypted_regex: '^(data|stringData|parameters|uri)$'
+  encrypted_regex: '^(data|stringData|parameters|uri|client_secret)$'
   gcp_kms: >-
     projects/programming-diary-prod/locations/global/keyRings/sops/cryptoKeys/sops-key
 

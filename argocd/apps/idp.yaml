@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: gravitee-idp
+  name: kratos-idp
   namespace: argocd
 spec:
   destination:
