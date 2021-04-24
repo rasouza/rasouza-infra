@@ -13,7 +13,7 @@ resources:
 
 images:
 - name: rasouza/diary-frontend
-  newTag: 08bc271
+  newTag: 69c39ca
 
 configMapGenerator:
 - files:
