@@ -9,7 +9,6 @@ namespace: diary
 resources:
 - deployment.yaml
 - service.yaml
-- virtualsvc.yaml
 
 images:
 - name: rasouza/diary-frontend
