@@ -13,7 +13,7 @@ resources:
 
 images:
 - name: rasouza/diary-core
-  newTag: d46eda9
+  newTag: 00740b9
 
 configMapGenerator:
 - envs:
