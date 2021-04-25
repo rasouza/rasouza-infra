@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: core
+    version: v1
+  name: core-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: core
+  template:
+    metadata:
+      labels:
+        app: core
+        version: v1
+    spec:
+      restartPolicy: Always
+      containers:
+      - image: rasouza/diary-core
+        name: core
+        ports:
+          - containerPort: 3001
+        envFrom:
+        - configMapRef:
+            name: core-config
+        - secretRef:
+            name: core-secret-generator
+  revisionHistoryLimit: 0
