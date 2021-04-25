@@ -20,12 +20,5 @@ configMapGenerator:
     - data/identity.schema.json
     - data/oidc.github.jsonnet
 
-# secretGenerator:
-#   - name: idp-secret
-#     type: Opaque
-#     envs:
-#       - envs/db.env
-#       - envs/secrets.env
-
 generators:
 - secret-generator.yaml
