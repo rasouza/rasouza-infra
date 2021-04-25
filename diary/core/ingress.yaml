@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: core-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  rules:
+  - http:
+      paths:
+      - backend:
+          serviceName: core-svc
+          servicePort: http
+    host: diary-core.rasouza.dev
+  tls:
+  - hosts:
+    - diary-core.rasouza.dev
+    secretName: cloudflare-tls
