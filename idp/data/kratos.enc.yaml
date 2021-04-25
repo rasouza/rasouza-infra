@@ -4,26 +4,27 @@ selfservice:
             enabled: true
             config:
                 providers:
-                -   id: github
-                    provider: github
-                    client_id: d7f69e4ab712c7c36ad6
-                    client_secret: ENC[AES256_GCM,data:W7Xoy2glfHOl1kG9jZ6Js67HKs2uiE3fcZwUkRac1eZhfy9PsbQnNQ==,iv:LFV97gLwwchhnedfxdy93tZWvObtUXl4ARuiSnI+/H4=,tag:pJUSq1rx7xxZoq9H6woAyA==,type:str]
-                    mapper_url: file:///etc/kratos/oidc.github.jsonnet
-                    scope:
-                    - read:user
-                    - user:email
+                    - id: github
+                      provider: github
+                      client_id: 29e23ecfc4eec0814fc0
+                      client_secret: ENC[AES256_GCM,data:QYsjUEYVDxFyNEuRWv04iMwvzDpsjr259mg6qxtvm3hVKoHSr1D8Rw==,iv:vS5yzXvDBXykJHAPijUfkF3mRtdS0ndGYKdHtg5vdb8=,tag:eIPUo1pRnMwwHHCASd7Sxw==,type:str]
+                      mapper_url: file:///etc/kratos/oidc.github.jsonnet
+                      scope:
+                        - read:user
+                        - user:email
 identity:
     default_schema_url: file:///etc/kratos/identity.schema.json
 sops:
     kms: []
     gcp_kms:
-    -   resource_id: projects/programming-diary-prod/locations/global/keyRings/sops/cryptoKeys/sops-key
-        created_at: '2021-02-21T22:28:46Z'
-        enc: CiQAFnBk+Fe2rJl3+nuOl96x6InXfOkI/mPAJJTArW2aXBZG+HUSSABlm1NMgBkTlL3r7XNiEpjzN4DEAjU9iZHranF9m3MHk+1Ok2v1y17s3YU1DKpHmR8CPHQ3STL6bfl0yslhM7zN8f7rv6NrAw==
+        - resource_id: projects/programming-diary-prod/locations/global/keyRings/sops/cryptoKeys/sops-key
+          created_at: "2021-02-21T22:28:46Z"
+          enc: CiQAFnBk+Fe2rJl3+nuOl96x6InXfOkI/mPAJJTArW2aXBZG+HUSSABlm1NMgBkTlL3r7XNiEpjzN4DEAjU9iZHranF9m3MHk+1Ok2v1y17s3YU1DKpHmR8CPHQ3STL6bfl0yslhM7zN8f7rv6NrAw==
     azure_kv: []
     hc_vault: []
-    lastmodified: '2021-02-21T22:28:47Z'
-    mac: ENC[AES256_GCM,data:twyHZGYVjKnm8vKTTGbTG08u3KKl7zKtzEHhp6/O6sRurJ4upsh0yXWPSX5FrB896Ccy5rhOeiFqxYcUPhI8n2OE/IEkg/e3iQtYMKXhjeFDwUWQC9VccuEB7L59w0iHsXTTrnI9NJshcXKLTGu5crrh30brSZ3rMmSA85ZxJAI=,iv:RO2UZogiiom/mdDT3T3hZFSFb3xHHMhTTYUQ9SKr6xA=,tag:Qba6VFGEyOWFXLPtS0XxPQ==,type:str]
+    age: []
+    lastmodified: "2021-04-25T21:43:07Z"
+    mac: ENC[AES256_GCM,data:v3aDI76wyhsR4s00qOLTdQokc2VLSaTgOaKM37svRf2BybUknm+CoYapWrA9UH7G/DDWUw3qQqV9+LzuNsdYks/qy9dH/AHefw+iq6GLrcprOiSWMw/0xTS0GSHlQKugpVp+c425etuGHQZccOkEk30RXdEawDEuG1QxI8muiEE=,iv:yC+TQb9Wgs0sNE3mkVSBqkDCkmADVCONEITBLjWKxW4=,tag:GOLItbnxD0ymC0db7AW9oA==,type:str]
     pgp: []
     encrypted_regex: ^(data|stringData|parameters|uri|client_secret)$
-    version: 3.6.1
+    version: 3.7.1
