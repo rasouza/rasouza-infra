@@ -18,7 +18,6 @@ images:
 configMapGenerator:
 - envs:
   - envs/app.env
-  - envs/urls.env
   name: core-config
 
 generators:
