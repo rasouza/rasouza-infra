@@ -21,13 +21,13 @@ spec:
       - image: rasouza/diary-core
         name: core
         ports:
-          - containerPort: 3001
+          - containerPort: 3000
         livenessProbe:
           initialDelaySeconds: 2
           periodSeconds: 10
           httpGet:
-            path: /health
-            port: 3001
+            path: /health-check
+            port: 3000
         envFrom:
         - configMapRef:
             name: core-config
