@@ -1,0 +1,22 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+commonLabels:
+  app: gamepass-bot
+
+namespace: gamepass
+
+resources:
+- deployment.yaml
+
+images:
+- name: rasouza/gamepass-bot
+  newTag: ade6090
+
+configMapGenerator:
+- envs:
+  - envs/app.env
+  name: gamepass-config
+
+generators:
+- secret-generator.yaml
