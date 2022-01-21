@@ -10,6 +10,7 @@ spec:
     spec:
       template:
         spec:
+          restartPolicy: OnFailure
           containers:
           - image: rasouza/gamepass-bot
             name: gamepass-sync
