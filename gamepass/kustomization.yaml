@@ -8,6 +8,7 @@ namespace: gamepass
 
 resources:
 - deployment.yaml
+- sync.yaml
 
 images:
 - name: rasouza/gamepass-bot
