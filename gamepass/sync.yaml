@@ -6,16 +6,18 @@ metadata:
   name:  gamepass-sync
 spec:
   schedule: 0 * * * *
-  template:
+  jobTemplate:
     spec:
-      containers:
-      - image: rasouza/gamepass-bot
-        name: gamepass-sync
-        command:
-        - node
-        - bin/sync.js
-        envFrom:
-        - configMapRef:
-            name: gamepass-config
-        - secretRef:
-            name: gamepass-secret-generator
+      template:
+        spec:
+          containers:
+          - image: rasouza/gamepass-bot
+            name: gamepass-sync
+            command:
+            - node
+            - bin/sync.js
+            envFrom:
+            - configMapRef:
+                name: gamepass-config
+            - secretRef:
+                name: gamepass-secret-generator
