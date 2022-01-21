@@ -11,6 +11,9 @@ spec:
       containers:
       - image: rasouza/gamepass-bot
         name: gamepass-sync
+        command:
+        - node
+        - bin/sync.js
         envFrom:
         - configMapRef:
             name: gamepass-config
