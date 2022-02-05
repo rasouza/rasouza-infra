@@ -9,7 +9,7 @@ spec:
     namespace: idp
     server: 'https://kubernetes.default.svc'
   source:
-    repoURL: https://github.com/rasouza/diary-infra.git
+    repoURL: https://github.com/rasouza/rasouza-infra.git
     targetRevision: master
     path: idp
   project: default

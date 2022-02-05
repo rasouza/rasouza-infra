@@ -10,7 +10,7 @@ spec:
 
   # Source of the application manifests
   source:
-    repoURL: https://github.com/rasouza/diary-infra.git
+    repoURL: https://github.com/rasouza/rasouza-infra.git
     targetRevision: master
     path: postgres
 
