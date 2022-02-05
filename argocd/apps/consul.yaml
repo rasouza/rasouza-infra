@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: consul
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    name: ""
+    namespace: hashicorp
+    server: https://kubernetes.default.svc
+  source:
+    path: ""
+    repoURL: https://helm.releases.hashicorp.com
+    chart: consul
+    targetRevision: 0.40.0
+    helm:
+      parameters:
+        - name: client.enabled
+          value: "true"
+        - name: server.replicas
+          value: "1"
+        - name: server.bootstrapExpect
+          value: "1"
+        - name: server.disruptionBudget.maxUnavailable
+          value: "0"
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
