@@ -11,6 +11,13 @@ This repository holds all k8s YAML necessary to run [Diary](https://github.com/u
 ## URLs
 - ArgoCD - https://argocd.rasouza.dev
 
+## Bootstrap OLM
+You need to bootstrap Operator Lifecycle Management first. You can do so through `brew install operator-sdk` and:
+
+```
+operator-sdk olm install
+```
+
 ## Troubleshooting
 
 ### `Error decrypting key: googleapi: Error 403: Permission` while SOPS decrypt

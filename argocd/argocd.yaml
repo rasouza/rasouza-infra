@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: argocd
+  namespace: argocd
+spec: 
+  server:
+    host: argocd.rasouza.dev
+    ingress:
+      enabled: true
+    insecure: true
+  initialRepositories: |
+    - type: git
+      url: https://github.com/rasouza/rasouza-infra.git
+  disableAdmin: true
+  dex:
+    config: |
+      connectors:
+        # GitHub
+        - type: github
+          id: github
+          name: GitHub
+          config:
+            clientID: b61a4e47f85582578249
+            clientSecret: $github-secret:clientSecret
+            orgs:
+            - name: programming-diary
