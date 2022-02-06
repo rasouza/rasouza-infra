@@ -5,6 +5,7 @@ resources:
   - catalog_source.yaml
   - operator_group.yaml
   - subscription.yaml
+  - prometheus-subscription.yaml
   - namespace.yaml
   - argocd.yaml
   - github-secret.yaml

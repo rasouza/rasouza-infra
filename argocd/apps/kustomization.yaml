@@ -6,4 +6,6 @@ resources:
 # - buildkite.yaml
 - gamepass-bot.yaml
 # - postgres.yaml
-# - idp.yaml
+- consul.yaml
+- vault.yaml
+- external-secrets.yaml

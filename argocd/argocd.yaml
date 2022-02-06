@@ -9,6 +9,8 @@ spec:
     ingress:
       enabled: true
     insecure: true
+  prometheus:
+    enabled: true
   initialRepositories: |
     - type: git
       url: https://github.com/rasouza/rasouza-infra.git
