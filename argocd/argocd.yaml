@@ -4,7 +4,7 @@ metadata:
   name: argocd
   namespace: argocd
 spec: 
-  version: 2.2.5
+  version: v2.2.5
   server:
     host: argocd.rasouza.dev
     ingress:
