@@ -1,0 +1,8 @@
+name: secret-reloader
+services:
+  consul:
+    chart: reloader
+    targetNamespace: external-secrets
+    type: helm
+    url: https://stakater.github.io/stakater-charts
+    version: "*"
