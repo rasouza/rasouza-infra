@@ -1,17 +1,23 @@
-name: consul
-services:
-  consul:
-    chart: consul
-    targetNamespace: hashicorp
-    type: helm
-    url: https://helm.releases.hashicorp.com
-    version: 0.40.0
-    values:
-      client:
-        enabled: true
-      server:
-        affinity: ""
-        replicas: 1
-        bootstrapExpect: 1
-        disruptionBudget:
-          maxUnavailable: 0
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: consul
+spec:
+  components:
+    - name: consul
+      type: helm
+      properties:
+        chart: consul
+        targetNamespace: hashicorp
+        version: "*"
+        url: https://helm.releases.hashicorp.com
+        repoType: helm
+        values:
+          client:
+            enabled: true
+          server:
+            affinity: ""
+            replicas: 1
+            bootstrapExpect: 1
+            disruptionBudget:
+              maxUnavailable: 0
