@@ -1,3 +1,7 @@
+provider "vault" {
+  address = "http://localhost:8200"
+}
+
 resource "vault_github_auth_backend" "github" {
   organization = "programming-diary"
 }
@@ -12,5 +16,5 @@ resource "vault_github_user" "rasouza" {
 
 resource "vault_policy" "admin_policy" {
   name   = "admins"
-  policy = file("vault/admin-policy.hcl")
+  policy = file("admin-policy.hcl")
 }
