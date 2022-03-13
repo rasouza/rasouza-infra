@@ -10,18 +10,38 @@ spec:
         image: growthbook/growthbook
         ports:
           - port: 3000
-          - port: 3100
         env:
           - name: APP_ORIGIN
             value: http://feature.k8s.rasouza.dev
-          - name: API_HOST
-            value: http://api.feature.k8s.rasouza.dev
       traits:
         - type: gateway
           properties:
             domain: feature.k8s.rasouza.dev
             http:
               "/": 3000
+        - type: service-binding
+          properties:
+            envMappings:
+              MONGODB_URI:
+                secret: growthbook-secret
+        - type: annotations
+          properties:
+            "reloader.stakater.com/auto": "true"
+    - name: growthbook-api
+      type: webservice
+      properties:
+        image: growthbook/growthbook
+        ports:
+          - port: 3100
+        env:
+          - name: API_HOST
+            value: http://api.feature.k8s.rasouza.dev
+      traits:
+        - type: gateway
+          properties:
+            domain: api.feature.k8s.rasouza.dev
+            http:
+              "/": 3100
         - type: service-binding
           properties:
             envMappings:
@@ -46,9 +66,16 @@ spec:
                     env:
                       - name: APP_ORIGIN
                         value: http://feature.k8s.local
+                  traits:
+                    - type: gateway
+                      properties:
+                        domain: feature.k8s.local
+                - name: growthbook-api
+                  properties:
+                    env:
                       - name: API_HOST
                         value: http://api.feature.k8s.local
                   traits:
                     - type: gateway
                       properties:
-                        domain: feature.k8s.local
+                        domain: api.feature.k8s.local
