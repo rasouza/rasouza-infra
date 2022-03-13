@@ -1,0 +1,47 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: gamepass-app
+spec:
+  components:
+    - name: gamepass-bot
+      type: worker
+      properties:
+        image: rasouza/gamepass-bot:6afe680
+        env:
+          - name: LOG_LEVEL
+            value: info
+          - name: SENTRY_DSN
+            value: https://abebceb1510b4dd9b34d88952ba60baf@o47773.ingest.sentry.io/5858943
+          - name: NODE_ENV
+            value: production
+      traits:
+        - type: service-binding
+          properties:
+            envMappings:
+              DISCORD_TOKEN:
+                secret: diary-core-secret
+              LOGDNA_KEY:
+                secret: diary-core-secret
+              SUPABASE_KEY:
+                secret: diary-core-secret
+              SUPABASE_URL:
+                secret: diary-core-secret
+  policies:
+    - name: multi-env
+      type: env-binding
+      properties:
+        envs:
+          - name: local
+            placement:
+              namespaceSelector:
+                name: gamepass
+            patch:
+              components:
+                - name: gamepass-bot
+                  properties:
+                    env:
+                      - name: LOG_LEVEL
+                        value: debug
+                      - name: NODE_ENV
+                        value: development
