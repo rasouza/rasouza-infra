@@ -2,7 +2,7 @@ apiVersion: external-secrets.io/v1alpha1
 kind: ClusterSecretStore
 metadata:
   name: vault-backend
-  namespace: hashicorp
+  namespace: external-secrets
 spec:
   provider:
     vault:
