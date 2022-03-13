@@ -12,5 +12,5 @@ spec:
       # the pull interval time, set to 10m since the infrastructure is steady
       pullInterval: 1m
       git:
-        branch: kubevela
+        branch: master
       path: ./apps
