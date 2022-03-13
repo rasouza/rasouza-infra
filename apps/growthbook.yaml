@@ -14,7 +14,7 @@ spec:
         env:
           - name: APP_ORIGIN
             value: http://feature.k8s.rasouza.dev
-          - name: APP_HOST
+          - name: API_HOST
             value: http://api.feature.k8s.rasouza.dev
       traits:
         - type: gateway
@@ -46,7 +46,7 @@ spec:
                     env:
                       - name: APP_ORIGIN
                         value: http://feature.k8s.local
-                      - name: APP_HOST
+                      - name: API_HOST
                         value: http://api.feature.k8s.local
                   traits:
                     - type: gateway
