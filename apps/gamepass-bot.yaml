@@ -27,6 +27,9 @@ spec:
                 secret: gamepass-bot-secret
               SUPABASE_URL:
                 secret: gamepass-bot-secret
+        - type: annotations
+          properties:
+            "reloader.stakater.com/auto": "true" 
   policies:
     - name: multi-env
       type: env-binding

@@ -31,6 +31,9 @@ spec:
                 secret: diary-core-secret
               SUPABASE_URL:
                 secret: diary-core-secret
+        - type: annotations
+          properties:
+            "reloader.stakater.com/auto": "true"
   policies:
     - name: multi-env
       type: env-binding
