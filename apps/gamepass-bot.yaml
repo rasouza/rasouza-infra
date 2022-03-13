@@ -20,13 +20,13 @@ spec:
           properties:
             envMappings:
               DISCORD_TOKEN:
-                secret: diary-core-secret
+                secret: gamepass-bot-secret
               LOGDNA_KEY:
-                secret: diary-core-secret
+                secret: gamepass-bot-secret
               SUPABASE_KEY:
-                secret: diary-core-secret
+                secret: gamepass-bot-secret
               SUPABASE_URL:
-                secret: diary-core-secret
+                secret: gamepass-bot-secret
   policies:
     - name: multi-env
       type: env-binding
