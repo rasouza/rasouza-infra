@@ -1,0 +1,54 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: growthbook-app
+spec:
+  components:
+    - name: growthbook
+      type: webservice
+      properties:
+        image: growthbook/growthbook
+        ports:
+          - port: 3000
+          - port: 3100
+        env:
+          - name: APP_ORIGIN
+            value: http://feature.k8s.rasouza.dev
+          - name: APP_HOST
+            value: http://api.feature.k8s.rasouza.dev
+      traits:
+        - type: gateway
+          properties:
+            domain: feature.k8s.rasouza.dev
+            http:
+              "/": 3000
+        - type: service-binding
+          properties:
+            envMappings:
+              MONGODB_URI:
+                secret: growthbook-secret
+        - type: annotations
+          properties:
+            "reloader.stakater.com/auto": "true"
+  policies:
+    - name: multi-env
+      type: env-binding
+      properties:
+        envs:
+          - name: local
+            placement:
+              namespaceSelector:
+                name: growthbook
+            patch:
+              components:
+                - name: growthbook
+                  properties:
+                    env:
+                      - name: APP_ORIGIN
+                        value: http://feature.k8s.local
+                      - name: APP_HOST
+                        value: http://api.feature.k8s.local
+                  traits:
+                    - type: gateway
+                      properties:
+                        domain: feature.k8s.local
