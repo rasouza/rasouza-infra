@@ -9,11 +9,11 @@ spec:
       properties:
         image: rasouza/diary-frontend:5ea6fcb
         port: 8000
-        # volumeMounts:
-        #   configMap:
-        #     - name: frontend-env
-        #       mountPath: /usr/share/nginx/html/env
-        #       cmName: diary-frontend-secret
+        volumeMounts:
+          configMap:
+            - name: frontend-env
+              mountPath: /usr/share/nginx/html/env
+              cmName: diary-frontend-configmap
       traits:
         - type: gateway
           properties:
