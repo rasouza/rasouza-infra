@@ -1,0 +1,41 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: diary-frontend-app
+spec:
+  components:
+    - name: diary-frontend
+      type: webservice
+      properties:
+        image: rasouza/diary-frontend:5ea6fcb
+        port: 8000
+        # volumeMounts:
+        #   configMap:
+        #     - name: frontend-env
+        #       mountPath: /usr/share/nginx/html/env
+        #       cmName: diary-frontend-secret
+      traits:
+        - type: gateway
+          properties:
+            domain: diary.k8s.rasouza.dev
+            http:
+              "/": 8000
+        - type: annotations
+          properties:
+            "reloader.stakater.com/auto": "true"
+  policies:
+    - name: multi-env
+      type: env-binding
+      properties:
+        envs:
+          - name: local
+            placement:
+              namespaceSelector:
+                name: diary
+            patch:
+              components:
+                - name: diary-frontend
+                  traits:
+                    - type: gateway
+                      properties:
+                        domain: diary.k8s.local
