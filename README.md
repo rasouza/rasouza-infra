@@ -37,3 +37,12 @@ sudo sh -c 'echo "127.0.0.1 http://feature.k8s.local" >> /etc/hosts'
 #### Change ingress host
 
 Manifest can be found at [apps/growthbook.yaml](apps/growthbook.yaml)
+
+## Previous infrastructure
+
+This repo evolves with time, but you can find past features from its tags
+
+- [Istio Service Mesh](https://github.com/rasouza/rasouza-infra/tree/istio)
+- [Kratos Identity Provider](https://github.com/rasouza/rasouza-infra/tree/kratos-idp)
+- [Kong APIGateway](https://github.com/rasouza/rasouza-infra/tree/kong)
+- [ArgoCD](https://github.com/rasouza/rasouza-infra/tree/argocd-operator)
