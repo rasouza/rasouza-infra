@@ -12,8 +12,17 @@ spec:
         volumeMounts:
           configMap:
             - name: frontend-env
-              mountPath: /usr/share/nginx/html/env
+              mountPath: /usr/share/nginx/html
               cmName: diary-frontend-configmap
+              items:
+                - key: config.js
+                  path: env/config.js
+            - name: nginx-conf
+              mountPath: /etc/nginx/conf.d
+              cmName: diary-frontend-configmap
+              items:
+                - key: default.conf
+                  path: default.conf
       traits:
         - type: gateway
           properties:
