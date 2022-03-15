@@ -2,24 +2,38 @@
 [![Project Diary](https://img.shields.io/badge/project-diary-blue?style=flat-square&logo=git)](https://github.com/users/rasouza/projects/2)
 [![Build status](https://img.shields.io/buildkite/a8cf2d43ca14c00c118b574c073f6e0f4e799af56f82a6f836/master?label=deploy&logo=kubernetes&logoColor=white&style=flat-square)](https://buildkite.com/rasouza/diary-deploy)
 
-This repository holds all k8s YAML necessary to run [Diary](https://github.com/users/rasouza/projects/2) microservices
+It contains manifests for a Kubernetes infrastructure
 
 ## Features
-- ArgoCD
-- NGINX Ingress Controller 1.9.0
 
-## URLs
-- ArgoCD - https://argocd.rasouza.dev
+- [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/)
+- [KubeVela](https://kubevela.io/)
+- [Consul](https://www.consul.io/)
+- [Vault](https://www.vaultproject.io/)
+- [External Secrets](https://external-secrets.io/)
+- [GrowthBook](https://www.growthbook.io/)
 
-## Bootstrap OLM
-You need to bootstrap Operator Lifecycle Management first. You can do so through `brew install operator-sdk` and:
+## Frontends
+
+### Vault
+
+Run
 
 ```
-operator-sdk olm install
+kubectl port-forward vault-0 8200:8200
 ```
 
-## Troubleshooting
+Then access http://localhost:8200
 
-### `Error decrypting key: googleapi: Error 403: Permission` while SOPS decrypt
+### Growthbook
 
-Make sure you activated the right project using `gcloud config configurations activate [project-name]` then run `gcloud auth application-default login`
+Growthbook has a URL set up to http://feature.k8s.local. You have 2 ways to approach it:
+
+#### Add it to `/etc/hosts` file
+```
+sudo sh -c 'echo "127.0.0.1 http://feature.k8s.local" >> /etc/hosts'
+```
+
+#### Change ingress host
+
+Manifest can be found at [apps/growthbook.yaml](apps/growthbook.yaml)
