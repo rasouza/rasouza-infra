@@ -7,7 +7,7 @@ spec:
     - name: gamepass-bot
       type: worker
       properties:
-        image: rasouza/gamepass-bot:2f94ce0
+        image: rasouza/gamepass-bot:35f1e27
         env:
           - name: LOG_LEVEL
             value: info
@@ -31,7 +31,7 @@ spec:
     - name: gamepass-sync
       type: worker
       properties:
-        image: rasouza/gamepass-bot:2f94ce0
+        image: rasouza/gamepass-bot:35f1e27
         cmd:
           - pm2-runtime
           - sync.js
