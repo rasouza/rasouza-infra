@@ -7,7 +7,7 @@ spec:
     - name: gamepass-bot
       type: worker
       properties:
-        image: rasouza/gamepass-bot:6afe680
+        image: rasouza/gamepass-bot:6f2683f
         env:
           - name: LOG_LEVEL
             value: info
@@ -29,7 +29,7 @@ spec:
                 secret: gamepass-bot-secret
         - type: annotations
           properties:
-            "reloader.stakater.com/auto": "true" 
+            "reloader.stakater.com/auto": "true"
   policies:
     - name: multi-env
       type: env-binding
