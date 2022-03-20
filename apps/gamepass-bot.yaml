@@ -7,7 +7,7 @@ spec:
     - name: gamepass-bot
       type: worker
       properties:
-        image: rasouza/gamepass-bot:6f2683f
+        image: rasouza/gamepass-bot:2f94ce0
         env:
           - name: LOG_LEVEL
             value: info
