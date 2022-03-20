@@ -21,8 +21,31 @@ spec:
             envMappings:
               DISCORD_TOKEN:
                 secret: gamepass-bot-secret
-              LOGDNA_KEY:
+              SUPABASE_KEY:
                 secret: gamepass-bot-secret
+              SUPABASE_URL:
+                secret: gamepass-bot-secret
+        - type: annotations
+          properties:
+            "reloader.stakater.com/auto": "true"
+    - name: gamepass-sync
+      type: worker
+      properties:
+        image: rasouza/gamepass-bot:2f94ce0
+        cmd:
+          - pm2-runtime
+          - sync.js
+        env:
+          - name: LOG_LEVEL
+            value: info
+          - name: SENTRY_DSN
+            value: https://abebceb1510b4dd9b34d88952ba60baf@o47773.ingest.sentry.io/5858943
+          - name: NODE_ENV
+            value: production
+      traits:
+        - type: service-binding
+          properties:
+            envMappings:
               SUPABASE_KEY:
                 secret: gamepass-bot-secret
               SUPABASE_URL:
@@ -42,6 +65,13 @@ spec:
             patch:
               components:
                 - name: gamepass-bot
+                  properties:
+                    env:
+                      - name: LOG_LEVEL
+                        value: debug
+                      - name: NODE_ENV
+                        value: development
+                - name: gamepass-sync
                   properties:
                     env:
                       - name: LOG_LEVEL
