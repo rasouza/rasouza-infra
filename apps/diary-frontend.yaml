@@ -7,7 +7,7 @@ spec:
     - name: diary-frontend
       type: webservice
       properties:
-        image: rasouza/diary-frontend:5ea6fcb
+        image: rasouza/diary-frontend:9d6dd00
         port: 80
         volumeMounts:
           configMap:
